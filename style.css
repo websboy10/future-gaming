@@ -1066,7 +1066,7 @@ img {
 /* ── Hero 3D Mini Widget ────────────── */
 .hero-widget-wrap {
   perspective: 1000px;
-  flex: 0 0 350px;
+  flex: 0 0 420px;
 }
 
 .hero-widget-3d {
@@ -1135,9 +1135,18 @@ img {
 .mini-booking-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   transform: translateZ(20px);
   transform-style: preserve-3d;
+}
+
+.mini-booking-form .form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.mini-booking-form .form-row .form-group {
+  flex: 1;
 }
 
 .mini-booking-form .form-group {
@@ -1145,18 +1154,23 @@ img {
 }
 
 .mini-booking-form .form-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   margin-bottom: 4px;
 }
 
 .mini-booking-form .form-input {
-  padding: 12px 16px;
-  font-size: 0.9rem;
+  padding: 10px 14px;
+  font-size: 0.85rem;
   border-radius: 8px;
 }
 
+.mini-booking-form .form-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
 .widget-btn {
-  margin-top: 8px;
+  margin-top: 4px;
   padding: 14px 20px;
   width: 100%;
   transform: translateZ(30px);

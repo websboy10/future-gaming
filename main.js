@@ -323,30 +323,59 @@ function initMiniBookingForm() {
   miniForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const typeValue = document.getElementById('mini-type').value;
-    const guestsValue = document.getElementById('mini-guests').value;
+    // Gather form data
+    const name = document.getElementById('mini-name').value.trim();
+    const email = document.getElementById('mini-email').value.trim();
+    const phone = document.getElementById('mini-phone').value.trim();
+    const eventType = document.getElementById('mini-type').value;
+    const date = document.getElementById('mini-date').value;
+    const guests = document.getElementById('mini-guests').value;
+    const message = document.getElementById('mini-message').value.trim();
 
-    // Prefill main form
-    if (typeValue) document.getElementById('booking-type').value = typeValue;
-    if (guestsValue) document.getElementById('booking-guests').value = guestsValue;
-
-    // Scroll to main form
-    const bookingSection = document.getElementById('booking');
-    if (bookingSection) {
-      const navHeight = document.getElementById('phantom-nav').offsetHeight;
-      const sectionHeader = bookingSection.querySelector('.section-header');
-      const targetPos = (sectionHeader ? sectionHeader : bookingSection).getBoundingClientRect().top + window.scrollY - navHeight - 24;
-      
-      window.scrollTo({
-        top: targetPos,
-        behavior: 'smooth'
-      });
-      
-      // Focus name field slightly after scrolling
-      setTimeout(() => {
-        document.getElementById('booking-name').focus();
-      }, 600);
+    // Basic validation
+    if (!name || !email || !eventType) {
+      // Shake the submit button for feedback
+      const btn = document.getElementById('mini-form-submit');
+      btn.style.animation = 'none';
+      btn.offsetHeight; // trigger reflow
+      btn.style.animation = 'shake 0.5s ease-in-out';
+      return;
     }
+
+    // Build event type label
+    const eventLabels = {
+      birthday: 'Fødselsdag',
+      company: 'Firma Event',
+      school: 'Skole eSport Session',
+      other: 'Andet'
+    };
+
+    // Build mailto
+    const subject = encodeURIComponent(`Event Forespørgsel (Hurtig) - ${eventLabels[eventType] || eventType}`);
+    const body = encodeURIComponent(
+      `Hej Future Gaming!\n\n` +
+      `Jeg vil gerne booke et event:\n\n` +
+      `Navn: ${name}\n` +
+      `Email: ${email}\n` +
+      `Telefon: ${phone || 'Ikke angivet'}\n` +
+      `Event Type: ${eventLabels[eventType] || eventType}\n` +
+      `Ønsket Dato: ${date || 'Ikke angivet'}\n` +
+      `Antal Gæster: ${guests || 'Ikke angivet'}\n\n` +
+      `Besked:\n${message || 'Ingen besked'}\n\n` +
+      `Med venlig hilsen,\n${name}`
+    );
+
+    window.location.href = `mailto:info@futuregaming.dk?subject=${subject}&body=${body}`;
+
+    // Show success state
+    const btn = document.getElementById('mini-form-submit');
+    btn.classList.add('success');
+    btn.querySelector('.cta-text').textContent = 'Email Åbnet ✓';
+    
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.querySelector('.cta-text').textContent = 'Send Forespørgsel →';
+    }, 3000);
   });
 }
 

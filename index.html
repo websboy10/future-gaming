@@ -110,32 +110,70 @@
         <div class="hero-grid-bg"></div>
       </div>
 
-      <div class="hero-content">
-        <h1 class="hero-title" id="hero-title">BOOK DIT NÆSTE<span class="desktop-space"> </span><br class="mobile-break">EVENT</h1>
-        <p class="hero-subtitle" id="hero-subtitle">Gaming-oplevelser til fødselsdage, firmaer & skoler</p>
-        
-        <div class="hero-cta-group">
-          <a href="#booking" class="hero-cta hero-cta-primary">
-            <span class="cta-ring"></span>
-            <span class="cta-text">Book Event →</span>
-          </a>
-          <a href="#sandwich-bar" class="hero-cta hero-cta-secondary">
-            <span class="cta-text">Se Sandwich Bar ↓</span>
-          </a>
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title" id="hero-title">BOOK DIT NÆSTE<span class="desktop-space"> </span><br class="mobile-break">EVENT</h1>
+          <p class="hero-subtitle" id="hero-subtitle">Gaming-oplevelser til fødselsdage, firmaer & skoler</p>
+          
+          <div class="hero-cta-group">
+            <a href="#booking" class="hero-cta hero-cta-primary">
+              <span class="cta-ring"></span>
+              <span class="cta-text">Book Event →</span>
+            </a>
+            <a href="#sandwich-bar" class="hero-cta hero-cta-secondary">
+              <span class="cta-text">Se Menu ↓</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-badge reveal-badge" style="--delay: 0.3s">
+              <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Events Afholdt</span>
+            </div>
+            <div class="stat-badge reveal-badge" style="--delay: 0.6s">
+              <span class="stat-number" data-target="70">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Gaming Stationer</span>
+            </div>
+            <div class="stat-badge reveal-badge" style="--delay: 0.9s">
+              <span class="stat-number" data-target="60">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Spil</span>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-stats">
-          <div class="stat-badge reveal-badge" style="--delay: 0.3s">
-            <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Events Afholdt</span>
-          </div>
-          <div class="stat-badge reveal-badge" style="--delay: 0.6s">
-            <span class="stat-number" data-target="70">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Gaming Stationer</span>
-          </div>
-          <div class="stat-badge reveal-badge" style="--delay: 0.9s">
-            <span class="stat-number" data-target="60">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Spil</span>
+        <div class="hero-widget-wrap reveal-right" style="--delay: 1.2s">
+          <div class="hero-widget-3d">
+            <div class="widget-glare"></div>
+            <div class="widget-header">
+              <div class="widget-dots">
+                <span class="widget-dot red"></span>
+                <span class="widget-dot yellow"></span>
+                <span class="widget-dot green"></span>
+              </div>
+              <span class="widget-title">HURTIG FORESPØRGSEL</span>
+            </div>
+            <form id="mini-booking-form" class="mini-booking-form">
+              <div class="form-group">
+                <label for="mini-type" class="form-label">Event Type</label>
+                <div class="select-wrap">
+                  <select id="mini-type" class="form-input form-select" required>
+                    <option value="" disabled selected>Vælg event type...</option>
+                    <option value="birthday">Fødselsdag</option>
+                    <option value="company">Firma Event</option>
+                    <option value="school">Skole eSport Session</option>
+                    <option value="other">Andet</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mini-guests" class="form-label">Antal Gæster</label>
+                <input type="number" id="mini-guests" class="form-input" placeholder="f.eks. 15" min="1" required>
+              </div>
+              <button type="submit" class="hero-cta hero-cta-primary widget-btn">
+                <span class="cta-text">Fortsæt Booking →</span>
+              </button>
+            </form>
           </div>
         </div>
       </div>

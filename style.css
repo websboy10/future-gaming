@@ -888,11 +888,23 @@ img {
   animation: gridPulse 4s ease-in-out infinite;
 }
 
-.hero-content {
+.hero-container {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 0 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.hero-content {
+  text-align: left;
+  flex: 1;
+  max-width: 600px;
 }
 
 .hero-title {
@@ -981,9 +993,9 @@ img {
 /* Stats */
 .hero-stats {
   display: flex;
-  gap: 40px;
-  justify-content: center;
-  margin-top: 50px;
+  gap: 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .stat-badge {
@@ -1042,13 +1054,119 @@ img {
 }
 
 .scroll-chevron {
-  width: 24px;
-  height: 24px;
-  border-right: 2px solid var(--red);
-  border-bottom: 2px solid var(--red);
+  width: 16px;
+  height: 16px;
+  border-right: 2px solid var(--text);
+  border-bottom: 2px solid var(--text);
   transform: rotate(45deg);
-  animation: scrollBounce 2s ease-in-out infinite;
+  animation: bounce 2s infinite;
   filter: drop-shadow(0 0 6px var(--red-glow));
+}
+
+/* ── Hero 3D Mini Widget ────────────── */
+.hero-widget-wrap {
+  perspective: 1000px;
+  flex: 0 0 350px;
+}
+
+.hero-widget-3d {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(227, 24, 55, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  transform: rotateY(-15deg) rotateX(10deg);
+  transform-style: preserve-3d;
+  box-shadow: 
+    -20px 20px 40px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(227, 24, 55, 0.05);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.hero-widget-3d:hover {
+  transform: rotateY(-5deg) rotateX(2deg);
+  border-color: rgba(227, 24, 55, 0.6);
+}
+
+.widget-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  transform: translateZ(1px);
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  transform: translateZ(30px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
+}
+
+.widget-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.widget-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.widget-dot.red { background: #ff5f56; }
+.widget-dot.yellow { background: #ffbd2e; }
+.widget-dot.green { background: #27c93f; }
+
+.widget-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.mini-booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: translateZ(20px);
+  transform-style: preserve-3d;
+}
+
+.mini-booking-form .form-group {
+  margin: 0;
+}
+
+.mini-booking-form .form-label {
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.mini-booking-form .form-input {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+.widget-btn {
+  margin-top: 8px;
+  padding: 14px 20px;
+  width: 100%;
+  transform: translateZ(30px);
+  box-shadow: 0 10px 20px rgba(227, 24, 55, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget-btn:hover {
+  transform: translateZ(40px) translateY(-2px);
+  box-shadow: 0 15px 30px rgba(227, 24, 55, 0.4);
 }
 
 /* ══════════════════════════════════════════════
@@ -1628,9 +1746,9 @@ img {
 
 .hero-cta-group {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 50px;
   flex-wrap: wrap;
 }
 
@@ -2745,6 +2863,35 @@ input[type="date"] {
   .hero-section {
     min-height: 100svh;
     min-height: 100vh; /* fallback */
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 80px;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-cta-group, .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-widget-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+    perspective: 800px;
+  }
+
+  .hero-widget-3d {
+    transform: rotateY(0deg) rotateX(10deg);
+  }
+
+  .hero-widget-3d:hover {
+    transform: rotateY(0deg) rotateX(0deg);
   }
 }
 

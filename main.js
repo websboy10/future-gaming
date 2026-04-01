@@ -315,7 +315,42 @@ function initCardTilt() {
   });
 }
 
-// ── 13. BOOKING FORM HANDLER ─────────────────
+// ── 13. MINI BOOKING FORM HANDLER ─────────────
+function initMiniBookingForm() {
+  const miniForm = document.getElementById('mini-booking-form');
+  if (!miniForm) return;
+
+  miniForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const typeValue = document.getElementById('mini-type').value;
+    const guestsValue = document.getElementById('mini-guests').value;
+
+    // Prefill main form
+    if (typeValue) document.getElementById('booking-type').value = typeValue;
+    if (guestsValue) document.getElementById('booking-guests').value = guestsValue;
+
+    // Scroll to main form
+    const bookingSection = document.getElementById('booking');
+    if (bookingSection) {
+      const navHeight = document.getElementById('phantom-nav').offsetHeight;
+      const sectionHeader = bookingSection.querySelector('.section-header');
+      const targetPos = (sectionHeader ? sectionHeader : bookingSection).getBoundingClientRect().top + window.scrollY - navHeight - 24;
+      
+      window.scrollTo({
+        top: targetPos,
+        behavior: 'smooth'
+      });
+      
+      // Focus name field slightly after scrolling
+      setTimeout(() => {
+        document.getElementById('booking-name').focus();
+      }, 600);
+    }
+  });
+}
+
+// ── 14. BOOKING FORM HANDLER ─────────────────
 function initBookingForm() {
   const form = document.getElementById('booking-form');
   if (!form) return;
@@ -386,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCounters();
   initCardTilt();
   createMatrixRain();
+  initMiniBookingForm();
   initBookingForm();
 
   // Make CTAs visible for animations

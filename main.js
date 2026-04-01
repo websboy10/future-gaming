@@ -88,24 +88,33 @@ function animateHeroTitle() {
       let text = node.textContent;
       if (text.trim() === '') return; 
       
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        
-        // Skip leading space if it's the very first character after a <br> 
-        // We handle this by checking if char is a newline or tab
-        if (char === '\n' || char === '\t') continue;
-        
-        const span = document.createElement('span');
-        span.className = 'letter';
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        if (char !== ' ') {
-          span.style.animationDelay = `${charIndex * 0.05 + 0.3}s`;
-          charIndex++;
+      // Split text into words and spaces to avoid mid-word line breaks
+      const tokens = text.split(/(\s+)/);
+      
+      tokens.forEach(token => {
+        if (!token.trim()) {
+          // It's whitespace, just append as text node or simple span
+          const spaceSpan = document.createElement('span');
+          spaceSpan.textContent = token;
+          heroTitle.appendChild(spaceSpan);
         } else {
-          span.style.opacity = '1';
+          // Wrapped word to keep it together
+          const wordSpan = document.createElement('span');
+          wordSpan.style.display = 'inline-block';
+          wordSpan.style.whiteSpace = 'nowrap';
+          
+          for (let i = 0; i < token.length; i++) {
+            const char = token[i];
+            const span = document.createElement('span');
+            span.className = 'letter';
+            span.textContent = char;
+            span.style.animationDelay = `${charIndex * 0.05 + 0.3}s`;
+            charIndex++;
+            wordSpan.appendChild(span);
+          }
+          heroTitle.appendChild(wordSpan);
         }
-        heroTitle.appendChild(span);
-      }
+      });
     } else if (node.nodeType === Node.ELEMENT_NODE) {
       // Preserve HTML elements like <br>
       const clone = node.cloneNode(true);

@@ -374,7 +374,7 @@ function initMiniBookingForm() {
       `Med venlig hilsen,\n${name}`
     );
 
-    window.location.href = `mailto:info@futuregaming.dk?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:sehit@degirmenci.dk?subject=${subject}&body=${body}`;
 
     // Show success state
     const btn = document.getElementById('mini-form-submit');
@@ -438,7 +438,7 @@ function initBookingForm() {
       `Med venlig hilsen,\n${name}`
     );
 
-    window.location.href = `mailto:info@futuregaming.dk?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:sehit@degirmenci.dk?subject=${subject}&body=${body}`;
 
     // Show success state
     const btn = document.getElementById('form-submit');

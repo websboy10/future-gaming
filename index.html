@@ -148,26 +148,29 @@
               <span class="widget-title">HURTIG FORESPØRGSEL</span>
             </div>
             <form id="mini-booking-form" class="mini-booking-form" novalidate>
+              <input type="hidden" name="access_key" value="bc98ec40-1bb7-4204-a06f-06f3731f09dd">
+              <input type="hidden" name="subject" value="Hurtig Event Forespoergsel - Future Gaming">
+              <input type="hidden" name="from_name" value="Future Gaming Website">
               <div class="form-row">
                 <div class="form-group">
                   <label for="mini-name" class="form-label">Navn *</label>
-                  <input type="text" id="mini-name" class="form-input" placeholder="Dit navn" required>
+                  <input type="text" id="mini-name" name="Navn" class="form-input" placeholder="Dit navn" required>
                 </div>
                 <div class="form-group">
                   <label for="mini-email" class="form-label">Email *</label>
-                  <input type="email" id="mini-email" class="form-input" placeholder="din@email.dk" required>
+                  <input type="email" id="mini-email" name="Email" class="form-input" placeholder="din@email.dk" required>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label for="mini-phone" class="form-label">Telefon</label>
-                  <input type="tel" id="mini-phone" class="form-input" placeholder="+45 00000000">
+                  <input type="tel" id="mini-phone" name="Telefon" class="form-input" placeholder="+45 00000000">
                 </div>
                 <div class="form-group">
                   <label for="mini-type" class="form-label">Event Type *</label>
                   <div class="select-wrap">
-                    <select id="mini-type" class="form-input form-select" required>
+                    <select id="mini-type" name="Event Type" class="form-input form-select" required>
                       <option value="" disabled selected>Vælg event...</option>
                       <option value="birthday">Fødselsdag</option>
                       <option value="company">Firma Event</option>
@@ -182,17 +185,17 @@
               <div class="form-row">
                 <div class="form-group">
                   <label for="mini-date" class="form-label">Dato</label>
-                  <input type="date" id="mini-date" class="form-input">
+                  <input type="date" id="mini-date" name="Dato" class="form-input">
                 </div>
                 <div class="form-group">
                   <label for="mini-guests" class="form-label">Gæster</label>
-                  <input type="number" id="mini-guests" class="form-input" placeholder="f.eks. 15" min="1">
+                  <input type="number" id="mini-guests" name="Antal Gaester" class="form-input" placeholder="f.eks. 15" min="1">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="mini-message" class="form-label">Kort Besked</label>
-                <textarea id="mini-message" class="form-input form-textarea" rows="2" placeholder="Særlige ønsker, tidsrum mv..."></textarea>
+                <textarea id="mini-message" name="Besked" class="form-input form-textarea" rows="2" placeholder="Særlige ønsker, tidsrum mv..."></textarea>
               </div>
 
               <button type="submit" class="hero-cta hero-cta-primary widget-btn" id="mini-form-submit">
@@ -553,6 +556,9 @@
       <div class="booking-container reveal">
         <div class="booking-form-wrap">
           <form id="booking-form" class="booking-form" novalidate>
+            <input type="hidden" name="access_key" value="bc98ec40-1bb7-4204-a06f-06f3731f09dd">
+            <input type="hidden" name="subject" value="Event Forespoergsel - Future Gaming">
+            <input type="hidden" name="from_name" value="Future Gaming Website">
             <div class="form-row">
               <div class="form-group">
                 <label for="booking-name" class="form-label">Navn *</label>

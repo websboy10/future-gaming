@@ -329,62 +329,53 @@ function initMiniBookingForm() {
   const miniForm = document.getElementById('mini-booking-form');
   if (!miniForm) return;
 
-  miniForm.addEventListener('submit', (e) => {
+  miniForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // Gather form data
-    const name = document.getElementById('mini-name').value.trim();
-    const email = document.getElementById('mini-email').value.trim();
-    const phone = document.getElementById('mini-phone').value.trim();
-    const eventType = document.getElementById('mini-type').value;
-    const date = document.getElementById('mini-date').value;
-    const guests = document.getElementById('mini-guests').value;
-    const message = document.getElementById('mini-message').value.trim();
+    const btn = document.getElementById('mini-form-submit');
+    const ctaText = btn.querySelector('.cta-text');
 
     // Basic validation
+    const name = document.getElementById('mini-name').value.trim();
+    const email = document.getElementById('mini-email').value.trim();
+    const eventType = document.getElementById('mini-type').value;
+
     if (!name || !email || !eventType) {
-      // Shake the submit button for feedback
-      const btn = document.getElementById('mini-form-submit');
       btn.style.animation = 'none';
-      btn.offsetHeight; // trigger reflow
+      btn.offsetHeight;
       btn.style.animation = 'shake 0.5s ease-in-out';
       return;
     }
 
-    // Build event type label
-    const eventLabels = {
-      birthday: 'Fødselsdag',
-      company: 'Firma Event',
-      school: 'Skole eSport Session',
-      other: 'Andet'
-    };
+    const originalText = ctaText.textContent;
+    ctaText.textContent = 'Sender...';
+    btn.disabled = true;
 
-    // Build mailto
-    const subject = encodeURIComponent(`Event Forespørgsel (Hurtig) - ${eventLabels[eventType] || eventType}`);
-    const body = encodeURIComponent(
-      `Hej Future Gaming!\n\n` +
-      `Jeg vil gerne booke et event:\n\n` +
-      `Navn: ${name}\n` +
-      `Email: ${email}\n` +
-      `Telefon: ${phone || 'Ikke angivet'}\n` +
-      `Event Type: ${eventLabels[eventType] || eventType}\n` +
-      `Ønsket Dato: ${date || 'Ikke angivet'}\n` +
-      `Antal Gæster: ${guests || 'Ikke angivet'}\n\n` +
-      `Besked:\n${message || 'Ingen besked'}\n\n` +
-      `Med venlig hilsen,\n${name}`
-    );
+    try {
+      const formData = new FormData(miniForm);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
 
-    window.location.href = `mailto:sehit@degirmenci.dk?subject=${subject}&body=${body}`;
-
-    // Show success state
-    const btn = document.getElementById('mini-form-submit');
-    btn.classList.add('success');
-    btn.querySelector('.cta-text').textContent = 'Email Aabnet';
-    
-    setTimeout(() => {
-      btn.classList.remove('success');
-      btn.querySelector('.cta-text').textContent = 'Send Forespoergsel';
-    }, 3000);
+      if (response.ok) {
+        btn.classList.add('success');
+        ctaText.textContent = 'Sendt!';
+        miniForm.reset();
+        setTimeout(() => {
+          btn.classList.remove('success');
+          ctaText.textContent = originalText;
+        }, 3000);
+      } else {
+        ctaText.textContent = 'Fejl - Proev igen';
+        setTimeout(() => { ctaText.textContent = originalText; }, 3000);
+      }
+    } catch (error) {
+      ctaText.textContent = 'Fejl - Proev igen';
+      setTimeout(() => { ctaText.textContent = originalText; }, 3000);
+    } finally {
+      btn.disabled = false;
+    }
   });
 }
 
@@ -393,62 +384,53 @@ function initBookingForm() {
   const form = document.getElementById('booking-form');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // Gather form data
-    const name = document.getElementById('booking-name').value.trim();
-    const email = document.getElementById('booking-email').value.trim();
-    const phone = document.getElementById('booking-phone').value.trim();
-    const eventType = document.getElementById('booking-type').value;
-    const date = document.getElementById('booking-date').value;
-    const guests = document.getElementById('booking-guests').value;
-    const message = document.getElementById('booking-message').value.trim();
+    const btn = document.getElementById('form-submit');
+    const submitText = btn.querySelector('.submit-text');
 
     // Basic validation
+    const name = document.getElementById('booking-name').value.trim();
+    const email = document.getElementById('booking-email').value.trim();
+    const eventType = document.getElementById('booking-type').value;
+
     if (!name || !email || !eventType) {
-      // Shake the submit button for feedback
-      const btn = document.getElementById('form-submit');
       btn.style.animation = 'none';
-      btn.offsetHeight; // trigger reflow
+      btn.offsetHeight;
       btn.style.animation = 'shake 0.5s ease-in-out';
       return;
     }
 
-    // Build event type label
-    const eventLabels = {
-      birthday: 'Fødselsdag',
-      company: 'Firma Event',
-      school: 'Skole eSport Session',
-      other: 'Andet'
-    };
+    const originalText = submitText.textContent;
+    submitText.textContent = 'Sender...';
+    btn.disabled = true;
 
-    // Build mailto
-    const subject = encodeURIComponent(`Event Forespørgsel - ${eventLabels[eventType] || eventType}`);
-    const body = encodeURIComponent(
-      `Hej Future Gaming!\n\n` +
-      `Jeg vil gerne booke et event:\n\n` +
-      `Navn: ${name}\n` +
-      `Email: ${email}\n` +
-      `Telefon: ${phone || 'Ikke angivet'}\n` +
-      `Event Type: ${eventLabels[eventType] || eventType}\n` +
-      `Ønsket Dato: ${date || 'Ikke angivet'}\n` +
-      `Antal Gæster: ${guests || 'Ikke angivet'}\n\n` +
-      `Besked:\n${message || 'Ingen besked'}\n\n` +
-      `Med venlig hilsen,\n${name}`
-    );
+    try {
+      const formData = new FormData(form);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
 
-    window.location.href = `mailto:sehit@degirmenci.dk?subject=${subject}&body=${body}`;
-
-    // Show success state
-    const btn = document.getElementById('form-submit');
-    btn.classList.add('success');
-    btn.querySelector('.submit-text').textContent = 'Email Aabnet';
-    
-    setTimeout(() => {
-      btn.classList.remove('success');
-      btn.querySelector('.submit-text').textContent = 'Send Forespørgsel';
-    }, 3000);
+      if (response.ok) {
+        btn.classList.add('success');
+        submitText.textContent = 'Sendt!';
+        form.reset();
+        setTimeout(() => {
+          btn.classList.remove('success');
+          submitText.textContent = originalText;
+        }, 3000);
+      } else {
+        submitText.textContent = 'Fejl - Proev igen';
+        setTimeout(() => { submitText.textContent = originalText; }, 3000);
+      }
+    } catch (error) {
+      submitText.textContent = 'Fejl - Proev igen';
+      setTimeout(() => { submitText.textContent = originalText; }, 3000);
+    } finally {
+      btn.disabled = false;
+    }
   });
 }
 

@@ -14,7 +14,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
 // ── 1. HEADER — Scroll Detection + Active Nav ─
-const sectionIds = ['events', 'booking', 'sandwich-bar', 'about', 'pricing', 'games', 'contact'];
+const sectionIds = ['events', 'sandwich-bar', 'about', 'pricing', 'games', 'booking', 'contact'];
 const sectionEls = sectionIds.map(id => document.getElementById(id));
 
 function updateActiveNav() {

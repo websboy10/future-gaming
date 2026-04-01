@@ -262,7 +262,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) {
       e.preventDefault();
       const navHeight = nav.offsetHeight;
-      const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+      
+      let scrollTarget = target;
+      // Focus on the red section tag / header if it exists in the section
+      const sectionHeader = target.querySelector('.section-header');
+      if (sectionHeader) {
+        scrollTarget = sectionHeader;
+      }
+
+      // Offset by navHeight and add a nice 24px visual padding above the red tag
+      const targetPosition = scrollTarget.getBoundingClientRect().top + window.scrollY - navHeight - 24;
 
       window.scrollTo({
         top: targetPosition,

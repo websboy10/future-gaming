@@ -379,11 +379,11 @@ function initMiniBookingForm() {
     // Show success state
     const btn = document.getElementById('mini-form-submit');
     btn.classList.add('success');
-    btn.querySelector('.cta-text').textContent = 'Email Åbnet ✓';
+    btn.querySelector('.cta-text').textContent = 'Email Aabnet';
     
     setTimeout(() => {
       btn.classList.remove('success');
-      btn.querySelector('.cta-text').textContent = 'Send Forespørgsel →';
+      btn.querySelector('.cta-text').textContent = 'Send Forespoergsel';
     }, 3000);
   });
 }
@@ -443,7 +443,7 @@ function initBookingForm() {
     // Show success state
     const btn = document.getElementById('form-submit');
     btn.classList.add('success');
-    btn.querySelector('.submit-text').textContent = 'Email Åbnet ✓';
+    btn.querySelector('.submit-text').textContent = 'Email Aabnet';
     
     setTimeout(() => {
       btn.classList.remove('success');

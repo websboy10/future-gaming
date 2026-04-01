@@ -48,8 +48,8 @@
     ]
   }
   </script>
-  <script type="module" crossorigin src="./assets/index-CB99WTtF.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-ChzR2cLX.css">
+  <script type="module" crossorigin src="./assets/index-OD0xOOaD.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-kYsGNlec.css">
 </head>
 
 <body>
@@ -153,26 +153,56 @@
               </div>
               <span class="widget-title">HURTIG FORESPØRGSEL</span>
             </div>
-            <form id="mini-booking-form" class="mini-booking-form">
-              <div class="form-group">
-                <label for="mini-type" class="form-label">Event Type</label>
-                <div class="select-wrap">
-                  <select id="mini-type" class="form-input form-select" required>
-                    <option value="" disabled selected>Vælg event type...</option>
-                    <option value="birthday">Fødselsdag</option>
-                    <option value="company">Firma Event</option>
-                    <option value="school">Skole eSport Session</option>
-                    <option value="other">Andet</option>
-                  </select>
-                  <span class="select-arrow">▾</span>
+            <form id="mini-booking-form" class="mini-booking-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="mini-name" class="form-label">Navn *</label>
+                  <input type="text" id="mini-name" class="form-input" placeholder="Dit navn" required>
+                </div>
+                <div class="form-group">
+                  <label for="mini-email" class="form-label">Email *</label>
+                  <input type="email" id="mini-email" class="form-input" placeholder="din@email.dk" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="mini-guests" class="form-label">Antal Gæster</label>
-                <input type="number" id="mini-guests" class="form-input" placeholder="f.eks. 15" min="1" required>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="mini-phone" class="form-label">Telefon</label>
+                  <input type="tel" id="mini-phone" class="form-input" placeholder="+45 00000000">
+                </div>
+                <div class="form-group">
+                  <label for="mini-type" class="form-label">Event Type *</label>
+                  <div class="select-wrap">
+                    <select id="mini-type" class="form-input form-select" required>
+                      <option value="" disabled selected>Vælg event...</option>
+                      <option value="birthday">Fødselsdag</option>
+                      <option value="company">Firma Event</option>
+                      <option value="school">Skole eSport</option>
+                      <option value="other">Andet</option>
+                    </select>
+                    <span class="select-arrow">▾</span>
+                  </div>
+                </div>
               </div>
-              <button type="submit" class="hero-cta hero-cta-primary widget-btn">
-                <span class="cta-text">Fortsæt Booking →</span>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="mini-date" class="form-label">Dato</label>
+                  <input type="date" id="mini-date" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="mini-guests" class="form-label">Gæster</label>
+                  <input type="number" id="mini-guests" class="form-input" placeholder="f.eks. 15" min="1">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="mini-message" class="form-label">Kort Besked</label>
+                <textarea id="mini-message" class="form-input form-textarea" rows="2" placeholder="Særlige ønsker, tidsrum mv..."></textarea>
+              </div>
+
+              <button type="submit" class="hero-cta hero-cta-primary widget-btn" id="mini-form-submit">
+                <span class="cta-text">Send Forespørgsel →</span>
               </button>
             </form>
           </div>

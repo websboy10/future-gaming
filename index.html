@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Future Gaming — Gaming Events, Fødselsdage & Sandwich Bar i Hvidovre</title>
   <meta name="description"
-    content="Book dit næste gaming-event hos Future Gaming i Hvidovre. Fødselsdage, firma events, skole eSport sessioner — plus Danmarks fedeste sandwich bar. 70+ pro gaming stationer." />
-  <meta name="keywords" content="gaming events, fødselsdag gaming, firma event, skole esport, sandwich bar, netcafe, Hvidovre, Future Gaming" />
+    content="Book dit næste gaming-event hos Future Gaming i Hvidovre. Fødselsdage, firma events, skole- og fritidstilbud — plus Danmarks fedeste sandwich bar. 70+ pro gaming stationer." />
+  <meta name="keywords" content="gaming events, fødselsdag gaming, firma event, skole fritidstilbud, sandwich bar, netcafe, Hvidovre, Future Gaming" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Future Gaming — Gaming Events & Sandwich Bar" />
   <meta property="og:description"
-    content="Book gaming-events til fødselsdage, firmaer & skoler. Plus en lækker sandwich bar." />
+    content="Book gaming-events til fødselsdage, firmaer, skoler & fritidsklubber. Plus en lækker sandwich bar." />
   <meta property="og:image" content="./futuregaming-05-800x533.jpeg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="da_DK" />
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Future Gaming",
-    "description": "Gaming events, fødselsdage, firma events, skole eSport & sandwich bar i Hvidovre",
+    "description": "Gaming events, fødselsdage, firma events, skole- og fritidstilbud & sandwich bar i Hvidovre",
     "image": "./futuregaming-05-800x533.jpeg",
     "telephone": "+4552528887",
     "email": "info@futuregaming.dk",
@@ -72,6 +72,9 @@
         <a href="#about" class="nav-link" data-section="about">
           <span class="nav-dot"></span>Om Os
         </a>
+        <a href="#departments" class="nav-link" data-section="departments">
+          <span class="nav-dot"></span>Afdelinger
+        </a>
         <a href="#pricing" class="nav-link" data-section="pricing">
           <span class="nav-dot"></span>Priser
         </a>
@@ -94,6 +97,7 @@
       <a href="#booking" class="mobile-link">Book Event</a>
       <a href="#sandwich-bar" class="mobile-link">Sandwich Bar</a>
       <a href="#about" class="mobile-link">Om Os</a>
+      <a href="#departments" class="mobile-link">Afdelinger</a>
       <a href="#pricing" class="mobile-link">Priser</a>
       <a href="#contact" class="mobile-link">Kontakt</a>
     </nav>
@@ -112,8 +116,8 @@
 
       <div class="hero-container">
         <div class="hero-content">
-          <h1 class="hero-title" id="hero-title">BOOK DIT NÆSTE<span class="desktop-space"> </span><br class="mobile-break">EVENT</h1>
-          <p class="hero-subtitle" id="hero-subtitle">Gaming-oplevelser til fødselsdage, firmaer & skoler</p>
+          <h1 class="hero-title" id="hero-title">BOOK DIT<span class="desktop-space"> </span><br class="mobile-break">NÆSTE&nbsp;EVENT</h1>
+          <p class="hero-subtitle" id="hero-subtitle">Gaming-oplevelser til fødselsdage, firmaer & institutioner</p>
           
           <div class="hero-cta-group">
             <a href="#booking" class="hero-cta hero-cta-primary">
@@ -154,7 +158,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label for="mini-name" class="form-label">Navn *</label>
-                  <input type="text" id="mini-name" name="Navn" class="form-input" placeholder="Dit navn" required>
+                  <input type="text" id="mini-name" name="Navn" class="form-input" placeholder="Dit fulde navn" required>
                 </div>
                 <div class="form-group">
                   <label for="mini-email" class="form-label">Email *</label>
@@ -165,16 +169,16 @@
               <div class="form-row">
                 <div class="form-group">
                   <label for="mini-phone" class="form-label">Telefon</label>
-                  <input type="tel" id="mini-phone" name="Telefon" class="form-input" placeholder="+45 00000000">
+                  <input type="tel" id="mini-phone" name="Telefon" class="form-input" placeholder="+45 00 00 00 00">
                 </div>
                 <div class="form-group">
                   <label for="mini-type" class="form-label">Event Type *</label>
                   <div class="select-wrap">
                     <select id="mini-type" name="Event Type" class="form-input form-select" required>
-                      <option value="" disabled selected>Vælg event...</option>
+                      <option value="" disabled selected>Vælg event type...</option>
                       <option value="birthday">Fødselsdag</option>
                       <option value="company">Firma Event</option>
-                      <option value="school">Skole eSport</option>
+                      <option value="school">Skole / Fritidstilbud</option>
                       <option value="other">Andet</option>
                     </select>
                     <span class="select-arrow">▾</span>
@@ -184,18 +188,18 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="mini-date" class="form-label">Dato</label>
+                  <label for="mini-date" class="form-label">Ønsket Dato</label>
                   <input type="date" id="mini-date" name="Dato" class="form-input">
                 </div>
                 <div class="form-group">
-                  <label for="mini-guests" class="form-label">Gæster</label>
+                  <label for="mini-guests" class="form-label">Antal Gæster</label>
                   <input type="number" id="mini-guests" name="Antal Gaester" class="form-input" placeholder="f.eks. 15" min="1">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="mini-message" class="form-label">Kort Besked</label>
-                <textarea id="mini-message" name="Besked" class="form-input form-textarea" rows="2" placeholder="Særlige ønsker, tidsrum mv..."></textarea>
+                <label for="mini-message" class="form-label">Besked</label>
+                <textarea id="mini-message" name="Besked" class="form-input form-textarea" rows="2" placeholder="Fortæl os om jeres event — særlige ønsker, tidsrum, eller spørgsmål..."></textarea>
               </div>
 
               <button type="submit" class="hero-cta hero-cta-primary widget-btn" id="mini-form-submit">
@@ -213,66 +217,107 @@
 
     <!-- ═══════════════ EVENTS — Book Your Experience ═══════════════ -->
     <section id="events" class="events-section">
-      <div class="section-header">
+      <div class="section-header events-header">
         <span class="section-tag">// EVENTS</span>
         <h2 class="section-title reveal">Vælg Dit Event</h2>
-        <p class="section-desc reveal">Vi skræddersyr gaming-oplevelser til enhver lejlighed. Vælg din event-type og lad os klare resten.</p>
+        <p class="section-desc reveal">Gaming-oplevelser til enhver lejlighed — vi klarer resten.</p>
       </div>
 
       <div class="events-grid">
-        <div class="event-panel reveal-diagonal-left" style="--delay: 0.1s">
-          <div class="event-image-wrap">
-            <img src="./futuregaming-01.jpeg" alt="Børnefødselsdag hos Future Gaming" class="event-img" />
-            <div class="event-holo-overlay"></div>
+        <!-- Card 1: Fødselsdage -->
+        <div class="event-card reveal" style="--delay: 0.1s">
+          <div class="event-card-img">
+            <img src="./futuregaming-01.jpeg" alt="Børnefødselsdag hos Future Gaming" />
+            <div class="event-card-gradient"></div>
+
           </div>
-          <div class="event-content">
-            <h3 class="event-title">Fødselsdage</h3>
-            <p class="event-desc">Giv dit barn den fedeste fødselsdag nogensinde! Vi sørger for gaming, turneringer, snacks og en uforglemmelig oplevelse for alle gæster. Vælg mellem forskellige pakker med mad fra vores sandwich bar.</p>
-            <ul class="event-highlights">
-              <li>Op til 20 spillere samtidig</li>
-              <li>Turnering med præmier</li>
-              <li>Mad & drikke inkluderet</li>
-              <li>Dedikeret event-vært</li>
-            </ul>
-            <a href="#booking" class="event-cta-btn">Book Fødselsdag →</a>
+          <div class="event-card-body">
+            <h3 class="event-card-title">Fødselsdage</h3>
+            <p class="event-card-desc">Den fedeste fødselsdag med gaming, turneringer og snacks til alle gæster.</p>
+            <div class="event-card-tags">
+              <span class="event-tag">Op til 20 spillere</span>
+              <span class="event-tag">Mad inkl.</span>
+              <span class="event-tag">Event-vært</span>
+            </div>
+            <a href="#booking" class="event-card-cta">Book Fødselsdag <span class="cta-arrow">→</span></a>
           </div>
         </div>
 
-        <div class="event-panel reveal-diagonal-right" style="--delay: 0.3s">
-          <div class="event-image-wrap">
-            <img src="./futuregaming-05-800x533.jpeg" alt="Firma event hos Future Gaming" class="event-img" />
-            <div class="event-holo-overlay"></div>
-            <div class="event-type-badge">MEST POPULÆR</div>
+        <!-- Card 2: Firma Events -->
+        <div class="event-card event-card--featured reveal" style="--delay: 0.25s">
+          <div class="event-card-badge">MEST POPULÆR</div>
+          <div class="event-card-img">
+            <img src="./futuregaming-05-800x533.jpeg" alt="Firma event hos Future Gaming" />
+            <div class="event-card-gradient"></div>
+
           </div>
-          <div class="event-content">
-            <h3 class="event-title">Firma Events</h3>
-            <p class="event-desc">Team-building der faktisk virker. Sæt kollegerne op mod hinanden i turneringer, samarbejds-spil og konkurrencer. Vi tilbyder skræddersyede pakker med forplejning.</p>
-            <ul class="event-highlights">
-              <li>Team-building turneringer</li>
-              <li>Catering fra sandwich bar</li>
-              <li>Fleksible tidsrammer</li>
-              <li>Privat afdeling muligt</li>
-            </ul>
-            <a href="#booking" class="event-cta-btn">Book Firma Event →</a>
+          <div class="event-card-body">
+            <h3 class="event-card-title">Firma Events</h3>
+            <p class="event-card-desc">Team-building der virker — turneringer, samarbejds-spil og catering.</p>
+            <div class="event-card-tags">
+              <span class="event-tag">Team-building</span>
+              <span class="event-tag">Catering</span>
+              <span class="event-tag">Privat afdeling</span>
+            </div>
+            <a href="#booking" class="event-card-cta">Book Firma Event <span class="cta-arrow">→</span></a>
           </div>
         </div>
 
-        <div class="event-panel reveal-diagonal-left" style="--delay: 0.5s">
-          <div class="event-image-wrap">
-            <img src="./futuregaming-03.jpeg" alt="Skole eSport session" class="event-img" />
-            <div class="event-holo-overlay"></div>
+        <!-- Card 3: Skole / Fritidstilbud -->
+        <div class="event-card reveal" style="--delay: 0.4s">
+          <div class="event-card-img">
+            <img src="./futuregaming-03.jpeg" alt="Skole og fritidstilbud hos Future Gaming" />
+            <div class="event-card-gradient"></div>
+
           </div>
-          <div class="event-content">
-            <h3 class="event-title">Skole eSport</h3>
-            <p class="event-desc">Bring klassen ind til en eSport-session! Perfekt til skoler der vil introducere gaming som en social og kompetitiv aktivitet. Vi faciliterer turneringer og lærer om teamwork.</p>
-            <ul class="event-highlights">
-              <li>Klasseturneringer</li>
-              <li>Pædagogisk tilgang</li>
-              <li>Teamwork & strategi fokus</li>
-              <li>Tilpasset skoleklasser</li>
-            </ul>
-            <a href="#booking" class="event-cta-btn">Book Skole Session →</a>
+          <div class="event-card-body">
+            <h3 class="event-card-title">Skole / Fritid</h3>
+            <p class="event-card-desc">Gaming-oplevelser til skoler, SFO'er, fritidsklubber og ungdomsforeninger.</p>
+            <div class="event-card-tags">
+              <span class="event-tag">Skoleklasser</span>
+              <span class="event-tag">Fritidsklubber</span>
+              <span class="event-tag">Fleksible pakker</span>
+            </div>
+            <a href="#booking" class="event-card-cta">Book Tilbud <span class="cta-arrow">→</span></a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ INSTRUCTOR SPOTLIGHT ═══════════════ -->
+    <section class="instructor-section">
+      <div class="instructor-container">
+        <!-- Visual side -->
+        <div class="instructor-visual reveal" style="--delay: 0.1s">
+          <div class="instructor-img-wrapper">
+            <img src="./instructor_transparent.png" alt="Certificeret Instruktør" class="instructor-img" />
+            <div class="instructor-glow"></div>
+            <div class="instructor-badge">CERTIFICERET</div>
+          </div>
+        </div>
+        
+        <!-- Content side -->
+        <div class="instructor-content reveal" style="--delay: 0.3s">
+          <span class="section-tag">// TRYGGE RAMMER</span>
+          <h2 class="section-title">Certificeret Instruktør</h2>
+          <p class="section-desc">Hos Future Gaming sikrer vi trygge rammer og professionel vejledning til skoler, SFO'er og ungdomsgrupper. Vi hjælper jer med at omsætte gaming til værdifuldt fællesskab.</p>
+          
+          <ul class="instructor-points">
+            <li>
+              <span class="instructor-point-icon">✓</span>
+              <span><strong>Diplomuddannet instruktør:</strong> Professionel pædagogisk tilgang til eSport.</span>
+            </li>
+            <li>
+              <span class="instructor-point-icon">✓</span>
+              <span><strong>Stærkt Fællesskab:</strong> Fokus på positiv gaming-kultur og teamwork.</span>
+            </li>
+            <li>
+              <span class="instructor-point-icon">✓</span>
+              <span><strong>Skræddersyede Forløb:</strong> Instruktion tilpasset alder og niveau.</span>
+            </li>
+          </ul>
+          
+          <a href="#contact" class="instructor-cta">Kontakt Os For Aftale <span class="cta-arrow">→</span></a>
         </div>
       </div>
     </section>
@@ -372,11 +417,25 @@
           <div class="hud-corner hud-bl"></div>
           <div class="hud-corner hud-br"></div>
           <div class="hud-scanline"></div>
-          <img src="./futuregaming-03.jpeg" alt="Future Gaming venue med pro gaming setups" class="hud-image" />
+          
+          <div class="hud-visual-wrapper">
+            <img src="./futuregaming-03.jpeg" alt="Future Gaming venue med pro gaming setups" class="hud-image" />
+            <!-- Sci-Fi Overlays -->
+            <div class="hud-cyber-overlay">
+              <div class="cyber-crosshair"></div>
+              <div class="cyber-ring"></div>
+            </div>
+          </div>
+
           <div class="hud-data">
-            <span class="hud-tag">VENUE</span>
+            <div class="hud-blueprint-grid"></div>
+            <span class="hud-tag">HQ VENUE SETUP</span>
             <h3>Pro Gaming Arena</h3>
             <p>70+ gaming stationer med Intel i5 processorer, NVIDIA RTX 4060 grafikkort, 144Hz curved skærme, mekaniske tastaturer og præcisions-mus.</p>
+            <div class="hud-status-bars">
+              <div class="status-bar"><span class="status-label">SYS_READY</span><div class="status-track"><div class="status-fill" style="width:100%"></div></div></div>
+              <div class="status-bar"><span class="status-label">NET_PING</span><div class="status-track"><div class="status-fill ping" style="width:96%"></div></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -394,24 +453,108 @@
       <!-- Feature cards -->
       <div class="feature-row">
         <div class="feature-card reveal" style="--delay: 0.1s">
-          <div class="feature-icon">70+</div>
           <div class="feature-num" data-target="70">0</div>
           <div class="feature-label">Pro Gaming PCs</div>
         </div>
         <div class="feature-card reveal" style="--delay: 0.2s">
-          <div class="feature-icon">3</div>
           <div class="feature-num" data-target="3">0</div>
           <div class="feature-label">PS5 Setups</div>
         </div>
         <div class="feature-card reveal" style="--delay: 0.3s">
-          <div class="feature-icon">60+</div>
           <div class="feature-num" data-target="60">0</div>
           <div class="feature-label">Spil Tilgaengelige</div>
         </div>
         <div class="feature-card reveal" style="--delay: 0.4s">
-          <div class="feature-icon">500+</div>
           <div class="feature-num" data-target="500">0</div>
           <div class="feature-label">Events Afholdt</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ DEPARTMENTS — Choose Your Zone ═══════════════ -->
+    <section id="departments" class="dept-section">
+      <div class="section-header dept-header">
+        <span class="section-tag">// AFDELINGER</span>
+        <h2 class="section-title reveal">Vælg Din Zone</h2>
+        <p class="section-desc reveal">Tre afdelinger — ét mål: den bedste gaming-oplevelse for dig.</p>
+      </div>
+
+      <div class="dept-grid">
+        <!-- Standard Zone -->
+        <div class="dept-card reveal" style="--delay: 0.1s">
+          <div class="dept-card-img">
+            <img src="./futuregaming-02.jpeg" alt="Standard Zone hos Future Gaming" />
+            <div class="dept-card-img-gradient"></div>
+          </div>
+          <div class="dept-card-top">
+            <span class="dept-zone-label">STANDARD ZONE</span>
+            <h3 class="dept-card-title">Chill & Game</h3>
+            <p class="dept-card-desc">Casual gaming og hygge med vennerne.</p>
+            <div class="dept-price">Fra <span class="dept-price-num">40</span> DKK/t</div>
+          </div>
+          <button class="dept-specs-toggle" aria-expanded="false">
+            <span class="dept-specs-label">Se Specs</span>
+            <span class="dept-specs-chevron">▾</span>
+          </button>
+          <div class="dept-specs-panel">
+            <div class="dept-spec-row"><span class="dept-spec-key">Ydeevne</span><span class="dept-spec-val">Intel i5 · GTX 1660</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Skærm</span><span class="dept-spec-val">24" 144Hz</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Siddepladser</span><span class="dept-spec-val">Standard stole</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Område</span><span class="dept-spec-val">Åbent fællesområde</span></div>
+          </div>
+          <a href="#pricing" class="dept-cta">Se Priser <span class="cta-arrow">→</span></a>
+        </div>
+
+        <!-- Pro Zone -->
+        <div class="dept-card dept-card--featured reveal" style="--delay: 0.25s">
+          <div class="dept-featured-tag">ANBEFALET</div>
+          <div class="dept-card-img">
+            <img src="./futuregaming-04.jpeg" alt="Pro Zone hos Future Gaming" />
+            <div class="dept-card-img-gradient"></div>
+          </div>
+          <div class="dept-card-top">
+            <span class="dept-zone-label">PRO ZONE</span>
+            <h3 class="dept-card-title">Competitive Edge</h3>
+            <p class="dept-card-desc">Top hardware til dem der spiller for at vinde.</p>
+            <div class="dept-price">Fra <span class="dept-price-num">50</span> DKK/t</div>
+          </div>
+          <button class="dept-specs-toggle" aria-expanded="false">
+            <span class="dept-specs-label">Se Specs</span>
+            <span class="dept-specs-chevron">▾</span>
+          </button>
+          <div class="dept-specs-panel">
+            <div class="dept-spec-row"><span class="dept-spec-key">Ydeevne</span><span class="dept-spec-val">Intel i5 · RTX 4060</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Skærm</span><span class="dept-spec-val">27" Curved 165Hz</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Periferi</span><span class="dept-spec-val">Mech. keyboard · Pro mus</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Siddepladser</span><span class="dept-spec-val">Gaming stole</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Område</span><span class="dept-spec-val">Dedikeret pro-sektion</span></div>
+          </div>
+          <a href="#pricing" class="dept-cta dept-cta--primary">Se Priser <span class="cta-arrow">→</span></a>
+        </div>
+
+        <!-- Console Zone -->
+        <div class="dept-card reveal" style="--delay: 0.4s">
+          <div class="dept-card-img">
+            <img src="./futuregaming-03.jpeg" alt="Console Lounge hos Future Gaming" />
+            <div class="dept-card-img-gradient"></div>
+          </div>
+          <div class="dept-card-top">
+            <span class="dept-zone-label">CONSOLE LOUNGE</span>
+            <h3 class="dept-card-title">Læn Dig Tilbage</h3>
+            <p class="dept-card-desc">PS5 på storskærm — sofa-gaming i top kvalitet.</p>
+            <div class="dept-price">Fra <span class="dept-price-num">50</span> DKK/t</div>
+          </div>
+          <button class="dept-specs-toggle" aria-expanded="false">
+            <span class="dept-specs-label">Se Specs</span>
+            <span class="dept-specs-chevron">▾</span>
+          </button>
+          <div class="dept-specs-panel">
+            <div class="dept-spec-row"><span class="dept-spec-key">Konsol</span><span class="dept-spec-val">PlayStation 5</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Skærm</span><span class="dept-spec-val">55" 4K TV</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Siddepladser</span><span class="dept-spec-val">Premium sofaer</span></div>
+            <div class="dept-spec-row"><span class="dept-spec-key">Område</span><span class="dept-spec-val">Privat lounge</span></div>
+          </div>
+          <a href="#pricing" class="dept-cta">Se Priser <span class="cta-arrow">→</span></a>
         </div>
       </div>
     </section>
@@ -522,33 +665,84 @@
         </p>
       </div>
 
-      <div class="game-carousel" id="game-carousel">
-        <div class="carousel-track" id="carousel-track">
-          <div class="game-tile"><span class="game-name">Counter-Strike 2</span><span class="game-genre">FPS</span></div>
-          <div class="game-tile"><span class="game-name">League of Legends</span><span class="game-genre">MOBA</span></div>
-          <div class="game-tile"><span class="game-name">Fortnite</span><span class="game-genre">Battle Royale</span></div>
-          <div class="game-tile"><span class="game-name">Minecraft</span><span class="game-genre">Sandbox</span></div>
-          <div class="game-tile"><span class="game-name">Valorant</span><span class="game-genre">FPS</span></div>
-          <div class="game-tile"><span class="game-name">Apex Legends</span><span class="game-genre">Battle Royale</span></div>
-          <div class="game-tile"><span class="game-name">Roblox</span><span class="game-genre">Sandbox</span></div>
-          <div class="game-tile"><span class="game-name">GTA V</span><span class="game-genre">Open World</span></div>
-          <div class="game-tile"><span class="game-name">Overwatch 2</span><span class="game-genre">FPS</span></div>
-          <div class="game-tile"><span class="game-name">Rocket League</span><span class="game-genre">Sports</span></div>
-          <div class="game-tile"><span class="game-name">FIFA 25</span><span class="game-genre">Sports</span></div>
-          <div class="game-tile"><span class="game-name">Call of Duty</span><span class="game-genre">FPS</span></div>
-          <!-- Duplicated for infinite scroll -->
-          <div class="game-tile"><span class="game-name">Counter-Strike 2</span><span class="game-genre">FPS</span></div>
-          <div class="game-tile"><span class="game-name">League of Legends</span><span class="game-genre">MOBA</span></div>
-          <div class="game-tile"><span class="game-name">Fortnite</span><span class="game-genre">Battle Royale</span></div>
-          <div class="game-tile"><span class="game-name">Minecraft</span><span class="game-genre">Sandbox</span></div>
-          <div class="game-tile"><span class="game-name">Valorant</span><span class="game-genre">FPS</span></div>
-          <div class="game-tile"><span class="game-name">Apex Legends</span><span class="game-genre">Battle Royale</span></div>
-          <div class="game-tile"><span class="game-name">Roblox</span><span class="game-genre">Sandbox</span></div>
-          <div class="game-tile"><span class="game-name">GTA V</span><span class="game-genre">Open World</span></div>
-          <div class="game-tile"><span class="game-name">Overwatch 2</span><span class="game-genre">FPS</span></div>
-          <div class="game-tile"><span class="game-name">Rocket League</span><span class="game-genre">Sports</span></div>
-          <div class="game-tile"><span class="game-name">FIFA 25</span><span class="game-genre">Sports</span></div>
-          <div class="game-tile"><span class="game-name">Call of Duty</span><span class="game-genre">FPS</span></div>
+      <div class="game-grid">
+        <div class="game-grid-track">
+          <div class="game-tile"><div class="game-tile-glow"></div><span class="game-name">GTA V</span><span class="game-genre">Open World</span></div>
+          <div class="game-tile"><div class="game-tile-glow"></div><span class="game-name">Roblox</span><span class="game-genre">Sandbox</span></div>
+          <div class="game-tile"><div class="game-tile-glow"></div><span class="game-name">Fortnite</span><span class="game-genre">Battle Royale</span></div>
+          <div class="game-tile"><div class="game-tile-glow"></div><span class="game-name">CS:GO</span><span class="game-genre">FPS</span></div>
+          <div class="game-tile"><div class="game-tile-glow"></div><span class="game-name">Minecraft</span><span class="game-genre">Sandbox</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ REVIEWS — What They Say ═══════════════ -->
+    <section id="reviews" class="reviews-section">
+      <div class="section-header reviews-header">
+        <span class="section-tag">// ANMELDELSER</span>
+        <h2 class="section-title reveal">Hvad vores kunder siger</h2>
+        <p class="section-desc reveal">Ægte oplevelser fra vores gæster.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <div class="review-card reveal" style="--delay: 0.1s">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-quote">"Den bedste fødselsdag vores søn nogensinde har haft. Alle børnene elskede det — og maden var fantastisk."</blockquote>
+          <div class="review-author">
+            <span class="review-name">Maria K.</span>
+            <span class="review-role">Forælder</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card reveal" style="--delay: 0.25s">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-quote">"Vi brugte det til team-building — alle var engagerede fra start til slut. Klart det bedste firma-event vi har haft."</blockquote>
+          <div class="review-author">
+            <span class="review-name">Anders J.</span>
+            <span class="review-role">Team Lead, Tech virksomhed</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card reveal" style="--delay: 0.4s">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-quote">"Fedt setup, hurtige maskiner og god stemning. Vi kommer her hver uge efter skole."</blockquote>
+          <div class="review-author">
+            <span class="review-name">Noah S.</span>
+            <span class="review-role">Stamgæst, 15 år</span>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="review-card reveal" style="--delay: 0.15s">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-quote">"Vi holder date night her mindst én gang om måneden. Hyggeligt, fedt udvalg af spil og lækre sandwiches."</blockquote>
+          <div class="review-author">
+            <span class="review-name">Sofie & Emil</span>
+            <span class="review-role">Par, stamgæster</span>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="review-card reveal" style="--delay: 0.3s">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-quote">"Perfekt ramme til vores udflugt. Eleverne var fokuserede og havde det sjovt — det er sjældent det går hånd i hånd."</blockquote>
+          <div class="review-author">
+            <span class="review-name">Thomas L.</span>
+            <span class="review-role">Lærer, folkeskole</span>
+          </div>
+        </div>
+
+        <!-- Review 6 -->
+        <div class="review-card reveal" style="--delay: 0.45s">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-quote">"Bookede til min datters 12-års fødselsdag. Nemt at planlægge, fantastisk personale og alle børn ville blive længere."</blockquote>
+          <div class="review-author">
+            <span class="review-name">Lene M.</span>
+            <span class="review-role">Forælder</span>
+          </div>
         </div>
       </div>
     </section>
@@ -590,7 +784,7 @@
                     <option value="" disabled selected>Vælg event type...</option>
                     <option value="birthday">Fødselsdag</option>
                     <option value="company">Firma Event</option>
-                    <option value="school">Skole eSport Session</option>
+                    <option value="school">Skole / Fritidstilbud</option>
                     <option value="other">Andet</option>
                   </select>
                   <span class="select-arrow">▾</span>
@@ -704,10 +898,14 @@
         </div>
 
         <div class="contact-map reveal-right">
+          <!-- Cyber map overlays -->
+          <div class="map-overlay"></div>
+          <div class="map-crosshair"></div>
+          <div class="map-scanner"></div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2252.5!2d12.473!3d55.637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sHvidovrevej+137%2C+2650+Hvidovre!5e0!3m2!1sda!2sdk!4v1"
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-            title="Future Gaming lokation"></iframe>
+            title="Future Gaming lokation" class="cyber-map"></iframe>
         </div>
       </div>
     </section>

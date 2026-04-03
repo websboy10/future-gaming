@@ -14,7 +14,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
 // ── 1. HEADER — Scroll Detection + Active Nav ─
-const sectionIds = ['events', 'sandwich-bar', 'about', 'pricing', 'games', 'booking', 'contact'];
+const sectionIds = ['events', 'sandwich-bar', 'about', 'departments', 'pricing', 'games', 'booking', 'contact'];
 const sectionEls = sectionIds.map(id => document.getElementById(id));
 
 function updateActiveNav() {
@@ -88,8 +88,9 @@ function animateHeroTitle() {
       let text = node.textContent;
       if (text.trim() === '') return; 
       
-      // Split text into words and spaces to avoid mid-word line breaks
-      const tokens = text.split(/(\s+)/);
+      // Split on regular whitespace while preserving non-breaking spaces
+      // so intentional no-wrap phrases like "NÆSTE EVENT" stay together.
+      const tokens = text.split(/([ \t\r\n]+)/);
       
       tokens.forEach(token => {
         if (!token.trim()) {
@@ -443,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
   createMatrixRain();
   initMiniBookingForm();
   initBookingForm();
+  initDeptAccordions();
 
   // Make CTAs visible for animations
   const heroCtas = document.querySelectorAll('.hero-cta');
@@ -456,3 +458,37 @@ document.addEventListener('DOMContentLoaded', () => {
     badges.forEach(b => b.classList.add('visible'));
   }, 800);
 });
+
+// ── 15. DEPARTMENT SPECS ACCORDION ─────────
+function initDeptAccordions() {
+  const toggles = document.querySelectorAll('.dept-specs-toggle');
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const panel = toggle.nextElementSibling;
+      const isOpen = toggle.classList.contains('active');
+
+      // Close all other panels in the section
+      toggles.forEach(other => {
+        if (other !== toggle) {
+          other.classList.remove('active');
+          other.setAttribute('aria-expanded', 'false');
+          other.querySelector('.dept-specs-label').textContent = 'Se Specs';
+          other.nextElementSibling.classList.remove('open');
+        }
+      });
+
+      // Toggle current
+      if (isOpen) {
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.querySelector('.dept-specs-label').textContent = 'Se Specs';
+        panel.classList.remove('open');
+      } else {
+        toggle.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.querySelector('.dept-specs-label').textContent = 'Skjul Specs';
+        panel.classList.add('open');
+      }
+    });
+  });
+}

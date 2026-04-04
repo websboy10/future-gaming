@@ -8,13 +8,15 @@ import './style.css';
 const nav = document.getElementById('phantom-nav');
 const hamburger = document.getElementById('hamburger');
 const mobileOverlay = document.getElementById('mobile-overlay');
+const sandwichSection = document.getElementById('sandwich-bar');
+const sandwichVideo = document.querySelector('.sandwich-hero-video');
 const heroTitle = document.getElementById('hero-title');
 const heroSubtitle = document.getElementById('hero-subtitle');
 const navLinks = document.querySelectorAll('.nav-link');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
 // ── 1. HEADER — Scroll Detection + Active Nav ─
-const sectionIds = ['events', 'sandwich-bar', 'about', 'departments', 'pricing', 'games', 'booking', 'contact'];
+const sectionIds = ['events', 'sandwich-bar', 'games', 'reviews', 'pricing', 'booking', 'contact'];
 const sectionEls = sectionIds.map(id => document.getElementById(id));
 
 function updateActiveNav() {
@@ -149,7 +151,83 @@ function animateSubtitle() {
   setTimeout(type, 1400);
 }
 
-// ── 5. SCROLL REVEAL — IntersectionObserver ──
+// ── 5. SECTION VIDEOS — Audio While In View ──
+function initSectionVideoAudio() {
+  const managedVideos = [
+    { section: sandwichSection, video: sandwichVideo, ratio: 0, inView: false, priority: 0 }
+  ].filter(item => item.section && item.video);
+
+  if (!managedVideos.length) return;
+
+  let audioUnlocked = false;
+
+  managedVideos.forEach(({ video }) => {
+    video.volume = 1;
+    video.muted = true;
+  });
+
+  function getActiveVideo() {
+    if (document.visibilityState !== 'visible') return null;
+
+    return managedVideos
+      .filter(item => item.inView)
+      .sort((a, b) => {
+        if (b.ratio !== a.ratio) return b.ratio - a.ratio;
+        return a.priority - b.priority;
+      })[0] || null;
+  }
+
+  async function syncSectionVideoAudio() {
+    const activeVideo = audioUnlocked ? getActiveVideo() : null;
+
+    await Promise.all(managedVideos.map(async (item) => {
+      const shouldPlayWithSound = activeVideo === item;
+      item.video.muted = !shouldPlayWithSound;
+
+      if (shouldPlayWithSound) {
+        try {
+          await item.video.play();
+        } catch (error) {
+          item.video.muted = true;
+        }
+      }
+    }));
+  }
+
+  async function unlockAudio() {
+    if (audioUnlocked) return;
+    audioUnlocked = true;
+    window.removeEventListener('pointerdown', unlockAudio);
+    window.removeEventListener('wheel', unlockAudio);
+    window.removeEventListener('keydown', unlockAudio);
+    window.removeEventListener('touchstart', unlockAudio);
+    window.removeEventListener('touchmove', unlockAudio);
+    await syncSectionVideoAudio();
+  }
+
+  const sectionVideoObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const item = managedVideos.find(candidate => candidate.section === entry.target);
+        if (!item) return;
+        item.ratio = entry.intersectionRatio;
+        item.inView = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+      });
+      syncSectionVideoAudio();
+    },
+    { threshold: [0, 0.15, 0.35, 0.6, 1] }
+  );
+
+  managedVideos.forEach(({ section }) => sectionVideoObserver.observe(section));
+  document.addEventListener('visibilitychange', syncSectionVideoAudio);
+  window.addEventListener('pointerdown', unlockAudio, { once: true });
+  window.addEventListener('wheel', unlockAudio, { once: true, passive: true });
+  window.addEventListener('keydown', unlockAudio, { once: true });
+  window.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
+  window.addEventListener('touchmove', unlockAudio, { once: true, passive: true });
+}
+
+// ── 6. SCROLL REVEAL — IntersectionObserver ──
 const revealElements = document.querySelectorAll(
   '.reveal, .reveal-left, .reveal-right, .reveal-diagonal-left, .reveal-diagonal-right, .reveal-badge'
 );
@@ -220,24 +298,7 @@ if (loadingBar) {
   loadingObserver.observe(loadingBar);
 }
 
-// ── 9. BULK BAR PROGRESS ─────────────────────
-const bulkOptions = document.querySelectorAll('.bulk-option');
-if (bulkOptions.length) {
-  const bulkObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          bulkObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-  bulkOptions.forEach((opt) => bulkObserver.observe(opt));
-}
-
-// ── 10. FOOTER MATRIX RAIN ───────────────────
+// ── 9. FOOTER MATRIX RAIN ───────────────────
 function createMatrixRain() {
   const container = document.getElementById('footer-matrix');
   if (!container) return;
@@ -262,7 +323,7 @@ function createMatrixRain() {
   }
 }
 
-// ── 11. SMOOTH SCROLL WITH OFFSET ────────────
+// ── 10. SMOOTH SCROLL WITH OFFSET ────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const targetId = this.getAttribute('href');
@@ -298,7 +359,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ── 12. CARD 3D TILT ─────────────────────────
+// ── 11. CARD 3D TILT ─────────────────────────
 function initCardTilt() {
   // Skip on touch devices — the CSS handles disabling transforms
   if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
@@ -325,7 +386,7 @@ function initCardTilt() {
   });
 }
 
-// ── 13. MINI BOOKING FORM HANDLER ─────────────
+// ── 12. MINI BOOKING FORM HANDLER ─────────────
 function initMiniBookingForm() {
   const miniForm = document.getElementById('mini-booking-form');
   if (!miniForm) return;
@@ -380,7 +441,7 @@ function initMiniBookingForm() {
   });
 }
 
-// ── 14. BOOKING FORM HANDLER ─────────────────
+// ── 13. BOOKING FORM HANDLER ─────────────────
 function initBookingForm() {
   const form = document.getElementById('booking-form');
   if (!form) return;
@@ -439,12 +500,13 @@ function initBookingForm() {
 document.addEventListener('DOMContentLoaded', () => {
   animateHeroTitle();
   animateSubtitle();
+  initSectionVideoAudio();
   animateCounters();
   initCardTilt();
   createMatrixRain();
   initMiniBookingForm();
   initBookingForm();
-  initDeptAccordions();
+  updateActiveNav();
 
   // Make CTAs visible for animations
   const heroCtas = document.querySelectorAll('.hero-cta');
@@ -458,37 +520,3 @@ document.addEventListener('DOMContentLoaded', () => {
     badges.forEach(b => b.classList.add('visible'));
   }, 800);
 });
-
-// ── 15. DEPARTMENT SPECS ACCORDION ─────────
-function initDeptAccordions() {
-  const toggles = document.querySelectorAll('.dept-specs-toggle');
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const panel = toggle.nextElementSibling;
-      const isOpen = toggle.classList.contains('active');
-
-      // Close all other panels in the section
-      toggles.forEach(other => {
-        if (other !== toggle) {
-          other.classList.remove('active');
-          other.setAttribute('aria-expanded', 'false');
-          other.querySelector('.dept-specs-label').textContent = 'Se Specs';
-          other.nextElementSibling.classList.remove('open');
-        }
-      });
-
-      // Toggle current
-      if (isOpen) {
-        toggle.classList.remove('active');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.querySelector('.dept-specs-label').textContent = 'Se Specs';
-        panel.classList.remove('open');
-      } else {
-        toggle.classList.add('active');
-        toggle.setAttribute('aria-expanded', 'true');
-        toggle.querySelector('.dept-specs-label').textContent = 'Skjul Specs';
-        panel.classList.add('open');
-      }
-    });
-  });
-}

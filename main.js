@@ -161,15 +161,7 @@ function initSectionVideoAudio() {
   if (!managedVideos.length) return;
 
   let audioUnlocked = false;
-  let manualMuteOverride = null;
-
-  function removeUnlockListeners() {
-    window.removeEventListener('pointerdown', unlockAudio);
-    window.removeEventListener('wheel', unlockAudio);
-    window.removeEventListener('keydown', unlockAudio);
-    window.removeEventListener('touchstart', unlockAudio);
-    window.removeEventListener('touchmove', unlockAudio);
-  }
+  let manualMuteOverride = true;
 
   function updateAudioToggleUi() {
     if (!sandwichVideoAudioToggle || !sandwichVideo) return;
@@ -224,13 +216,6 @@ function initSectionVideoAudio() {
     updateAudioToggleUi();
   }
 
-  async function unlockAudio() {
-    if (audioUnlocked) return;
-    audioUnlocked = true;
-    removeUnlockListeners();
-    await syncSectionVideoAudio();
-  }
-
   if (sandwichVideoAudioToggle && sandwichVideo) {
     sandwichVideoAudioToggle.addEventListener('click', async () => {
       const userWantsSound = sandwichVideo.muted;
@@ -238,7 +223,6 @@ function initSectionVideoAudio() {
       if (userWantsSound) {
         audioUnlocked = true;
         manualMuteOverride = false;
-        removeUnlockListeners();
       } else {
         manualMuteOverride = true;
       }
@@ -262,11 +246,6 @@ function initSectionVideoAudio() {
 
   managedVideos.forEach(({ section }) => sectionVideoObserver.observe(section));
   document.addEventListener('visibilitychange', syncSectionVideoAudio);
-  window.addEventListener('pointerdown', unlockAudio, { once: true });
-  window.addEventListener('wheel', unlockAudio, { once: true, passive: true });
-  window.addEventListener('keydown', unlockAudio, { once: true });
-  window.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
-  window.addEventListener('touchmove', unlockAudio, { once: true, passive: true });
 }
 
 // ── 6. SCROLL REVEAL — IntersectionObserver ──

@@ -1113,10 +1113,18 @@ img {
   color: var(--red);
 }
 
+.stat-number-line {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+}
+
 .stat-plus {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
   color: var(--red);
+  line-height: 1;
+  margin-top: 0.18em;
 }
 
 .stat-label {

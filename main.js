@@ -10,6 +10,7 @@ const hamburger = document.getElementById('hamburger');
 const mobileOverlay = document.getElementById('mobile-overlay');
 const sandwichSection = document.getElementById('sandwich-bar');
 const sandwichVideo = document.querySelector('.sandwich-hero-video');
+const sandwichVideoAudioToggle = document.getElementById('sandwich-video-audio-toggle');
 const heroTitle = document.getElementById('hero-title');
 const heroSubtitle = document.getElementById('hero-subtitle');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -160,11 +161,38 @@ function initSectionVideoAudio() {
   if (!managedVideos.length) return;
 
   let audioUnlocked = false;
+  let manualMuteOverride = null;
+
+  function removeUnlockListeners() {
+    window.removeEventListener('pointerdown', unlockAudio);
+    window.removeEventListener('wheel', unlockAudio);
+    window.removeEventListener('keydown', unlockAudio);
+    window.removeEventListener('touchstart', unlockAudio);
+    window.removeEventListener('touchmove', unlockAudio);
+  }
+
+  function updateAudioToggleUi() {
+    if (!sandwichVideoAudioToggle || !sandwichVideo) return;
+    const audioText = sandwichVideoAudioToggle.querySelector('.sandwich-video-audio-text');
+    const audioIcon = sandwichVideoAudioToggle.querySelector('.sandwich-video-audio-icon');
+    const isMuted = sandwichVideo.muted;
+
+    sandwichVideoAudioToggle.classList.toggle('is-active', !isMuted);
+    sandwichVideoAudioToggle.setAttribute('aria-pressed', String(!isMuted));
+    sandwichVideoAudioToggle.setAttribute(
+      'aria-label',
+      isMuted ? 'Slå lyd til på sandwich bar video' : 'Slå lyd fra på sandwich bar video'
+    );
+
+    if (audioText) audioText.textContent = isMuted ? 'Slå lyd til' : 'Slå lyd fra';
+    if (audioIcon) audioIcon.textContent = isMuted ? '🔈' : '🔊';
+  }
 
   managedVideos.forEach(({ video }) => {
     video.volume = 1;
     video.muted = true;
   });
+  updateAudioToggleUi();
 
   function getActiveVideo() {
     if (document.visibilityState !== 'visible') return null;
@@ -181,7 +209,7 @@ function initSectionVideoAudio() {
     const activeVideo = audioUnlocked ? getActiveVideo() : null;
 
     await Promise.all(managedVideos.map(async (item) => {
-      const shouldPlayWithSound = activeVideo === item;
+      const shouldPlayWithSound = activeVideo === item && manualMuteOverride !== true;
       item.video.muted = !shouldPlayWithSound;
 
       if (shouldPlayWithSound) {
@@ -192,17 +220,31 @@ function initSectionVideoAudio() {
         }
       }
     }));
+
+    updateAudioToggleUi();
   }
 
   async function unlockAudio() {
     if (audioUnlocked) return;
     audioUnlocked = true;
-    window.removeEventListener('pointerdown', unlockAudio);
-    window.removeEventListener('wheel', unlockAudio);
-    window.removeEventListener('keydown', unlockAudio);
-    window.removeEventListener('touchstart', unlockAudio);
-    window.removeEventListener('touchmove', unlockAudio);
+    removeUnlockListeners();
     await syncSectionVideoAudio();
+  }
+
+  if (sandwichVideoAudioToggle && sandwichVideo) {
+    sandwichVideoAudioToggle.addEventListener('click', async () => {
+      const userWantsSound = sandwichVideo.muted;
+
+      if (userWantsSound) {
+        audioUnlocked = true;
+        manualMuteOverride = false;
+        removeUnlockListeners();
+      } else {
+        manualMuteOverride = true;
+      }
+
+      await syncSectionVideoAudio();
+    });
   }
 
   const sectionVideoObserver = new IntersectionObserver(
@@ -441,22 +483,20 @@ function initMiniBookingForm() {
   });
 }
 
-// ── 13. BOOKING FORM HANDLER ─────────────────
-function initBookingForm() {
-  const form = document.getElementById('booking-form');
-  if (!form) return;
+function initInquiryForm({ formId, buttonId, nameId, emailId, typeId }) {
+  const form = document.getElementById(formId);
+  const btn = document.getElementById(buttonId);
+  if (!form || !btn) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = document.getElementById('form-submit');
     const submitText = btn.querySelector('.submit-text');
 
-    // Basic validation
-    const name = document.getElementById('booking-name').value.trim();
-    const email = document.getElementById('booking-email').value.trim();
-    const eventType = document.getElementById('booking-type').value;
+    const name = document.getElementById(nameId)?.value.trim();
+    const email = document.getElementById(emailId)?.value.trim();
+    const inquiryType = document.getElementById(typeId)?.value;
 
-    if (!name || !email || !eventType) {
+    if (!name || !email || !inquiryType) {
       btn.style.animation = 'none';
       btn.offsetHeight;
       btn.style.animation = 'shake 0.5s ease-in-out';
@@ -496,6 +536,69 @@ function initBookingForm() {
   });
 }
 
+// ── 13. BOOKING FORM HANDLER ─────────────────
+function initBookingForm() {
+  initInquiryForm({
+    formId: 'booking-form',
+    buttonId: 'form-submit',
+    nameId: 'booking-name',
+    emailId: 'booking-email',
+    typeId: 'booking-type'
+  });
+}
+
+// ── 14. CATERING DROPDOWN + FORM ─────────────
+function initCateringDropdown() {
+  const toggle = document.getElementById('catering-toggle');
+  const panel = document.getElementById('catering-panel');
+  if (!toggle || !panel) return;
+
+  panel.inert = true;
+  panel.style.maxHeight = '0px';
+
+  function setPanelState(isOpen) {
+    toggle.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    panel.classList.toggle('is-open', isOpen);
+    panel.setAttribute('aria-hidden', String(!isOpen));
+    panel.inert = !isOpen;
+
+    if (isOpen) {
+      panel.style.maxHeight = `${panel.scrollHeight}px`;
+      requestAnimationFrame(() => {
+        const top = toggle.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 16;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    } else {
+      panel.style.maxHeight = `${panel.scrollHeight}px`;
+      requestAnimationFrame(() => {
+        panel.style.maxHeight = '0px';
+      });
+    }
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    setPanelState(!isOpen);
+  });
+
+  window.addEventListener('resize', () => {
+    if (toggle.getAttribute('aria-expanded') === 'true') {
+      panel.style.maxHeight = `${panel.scrollHeight}px`;
+    }
+  });
+}
+
+function initCateringForm() {
+  initInquiryForm({
+    formId: 'catering-form',
+    buttonId: 'catering-submit',
+    nameId: 'catering-name',
+    emailId: 'catering-email',
+    typeId: 'catering-type'
+  });
+}
+
 // ── INIT ─────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   animateHeroTitle();
@@ -506,6 +609,8 @@ document.addEventListener('DOMContentLoaded', () => {
   createMatrixRain();
   initMiniBookingForm();
   initBookingForm();
+  initCateringDropdown();
+  initCateringForm();
   updateActiveNav();
 
   // Make CTAs visible for animations

@@ -3318,9 +3318,9 @@ input[type="date"] {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  min-height: 400px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 32px;
+  align-items: start;
 }
 
 .contact-info {
@@ -3454,30 +3454,35 @@ input[type="date"] {
 
 /* Map */
 .contact-map {
-  position: relative;
   display: grid;
-  grid-template-rows: minmax(200px, 0.9fr) minmax(280px, 1fr);
-  border-radius: 16px;
+  gap: 16px;
+  align-content: start;
+}
+
+.contact-panel {
+  position: relative;
   overflow: hidden;
-  border: 1px solid rgba(227, 24, 55, 0.3);
-  min-height: 520px;
-  box-shadow: 0 0 40px rgba(227, 24, 55, 0.1);
-  background: var(--surface);
+  margin: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(227, 24, 55, 0.24);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 0 32px rgba(227, 24, 55, 0.1);
 }
 
 .contact-facade {
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(227, 24, 55, 0.18);
-  background: rgba(255, 255, 255, 0.02);
+  aspect-ratio: 16 / 9;
 }
 
 .contact-facade-image {
   width: 100%;
   height: 100%;
-  min-height: 200px;
   display: block;
   object-fit: cover;
+}
+
+.contact-map-frame {
+  aspect-ratio: 16 / 10;
+  min-height: 280px;
 }
 
 .cyber-map {
@@ -3496,11 +3501,16 @@ input[type="date"] {
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .contact-map {
-    grid-template-rows: minmax(180px, 0.85fr) minmax(240px, 1fr);
-    min-height: 420px;
+  .contact-facade {
+    aspect-ratio: 4 / 3;
+  }
+
+  .contact-map-frame {
+    aspect-ratio: auto;
+    min-height: 240px;
   }
 
 
@@ -3791,9 +3801,7 @@ input[type="date"] {
   }
 
   .contact-map {
-    grid-template-rows: 160px 220px;
-    min-height: 380px;
-    border-radius: 12px;
+    gap: 12px;
   }
 
   .hours-neon {
@@ -3810,6 +3818,14 @@ input[type="date"] {
 
   .neon-time {
     font-size: 0.72rem;
+  }
+
+  .contact-panel {
+    border-radius: 12px;
+  }
+
+  .contact-map-frame {
+    min-height: 220px;
   }
 
   .contact-icon {

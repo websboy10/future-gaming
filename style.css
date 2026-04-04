@@ -2964,14 +2964,7 @@ input[type="date"] {
     min-height: 280px;
   }
 
-  .hero-stats {
-    flex-wrap: wrap;
-  }
 
-  .hero-title {
-    font-size: clamp(2rem, 10vw, 3.5rem);
-    letter-spacing: 2px;
-  }
 }
 
 /* ══════════════════════════════════════════════
@@ -3046,14 +3039,16 @@ input[type="date"] {
   }
 
   .hero-section {
+    height: auto;
+    min-height: 100vh;
     min-height: 100svh;
-    min-height: 100vh; /* fallback */
   }
 
   .hero-container {
     flex-direction: column;
     text-align: center;
     padding-top: 80px;
+    padding-bottom: 60px;
   }
 
   .hero-content {
@@ -3074,11 +3069,12 @@ input[type="date"] {
   }
 
   .hero-widget-3d {
-    transform: rotateY(0deg) rotateX(10deg);
+    transform: none;
+    padding: 24px;
   }
 
   .hero-widget-3d:hover {
-    transform: rotateY(0deg) rotateX(0deg);
+    transform: none;
   }
 
   .mobile-break {
@@ -3124,6 +3120,15 @@ input[type="date"] {
     font-size: 0.95rem;
     letter-spacing: 1px;
     margin-bottom: 28px;
+  }
+
+  .mini-booking-form .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-widget-3d {
+    padding: 20px;
   }
 
   .scroll-indicator {

@@ -49,8 +49,8 @@
     ]
   }
   </script>
-  <script type="module" crossorigin src="./assets/index-MDjWr21l.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DwApp6OB.css">
+  <script type="module" crossorigin src="./assets/index-kADT6LPR.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BN3v4AOA.css">
 </head>
 
 <body>
@@ -134,7 +134,7 @@
               <span class="cta-ring"></span>
               <span class="cta-text">Book Event →</span>
             </a>
-            <a href="tel:+4552528887" class="hero-cta hero-cta-call">
+            <a href="tel:+4552528887" class="hero-cta hero-cta-call hero-cta-call-mobile">
               <span class="cta-text">Ring Til Butikken</span>
             </a>
             <a href="#sandwich-bar" class="hero-cta hero-cta-secondary">
@@ -362,9 +362,15 @@
           </div>
         </div>
         <div class="sandwich-content reveal-right">
-          <div class="sandwich-media-card sandwich-media-card--hero reveal">
+          <button
+            type="button"
+            class="sandwich-media-card sandwich-media-card--hero sandwich-menu-trigger reveal"
+            id="sandwich-menu-trigger"
+            aria-label="Åbn menu i stor visning"
+          >
             <img src="./assets/Screenshot%202026-04-04%20at%2018.33.35-CnvgDSXi.png" alt="Future Gaming Menu" class="sandwich-media menu-img-display" />
-          </div>
+            <span class="sandwich-menu-hint">Tryk for at udvide menuen</span>
+          </button>
         </div>
       </div>
 
@@ -404,9 +410,7 @@
           aria-expanded="false"
           aria-controls="catering-panel"
         >
-          <span class="catering-toggle-kicker">Future Gaming Catering</span>
           <span class="catering-toggle-title">Bestil catering</span>
-          <span class="catering-toggle-meta">Åbn menu, muligheder og forespørgsel</span>
           <span class="catering-toggle-icon" aria-hidden="true">+</span>
         </button>
       </div>
@@ -878,6 +882,17 @@
       </div>
     </section>
   </main>
+
+  <div class="menu-lightbox" id="menu-lightbox" aria-hidden="true">
+    <div class="menu-lightbox-backdrop" data-close-menu-lightbox></div>
+    <div class="menu-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="menu-lightbox-title">
+      <button type="button" class="menu-lightbox-close" id="menu-lightbox-close" aria-label="Luk menuvisning">×</button>
+      <h2 class="menu-lightbox-title" id="menu-lightbox-title">Future Gaming Menu</h2>
+      <div class="menu-lightbox-frame">
+        <img src="./assets/Screenshot%202026-04-04%20at%2018.33.35-CnvgDSXi.png" alt="Future Gaming Menu i stor visning" class="menu-lightbox-image" />
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
   <footer class="site-footer">

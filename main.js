@@ -11,6 +11,9 @@ const mobileOverlay = document.getElementById('mobile-overlay');
 const sandwichSection = document.getElementById('sandwich-bar');
 const sandwichVideo = document.querySelector('.sandwich-hero-video');
 const sandwichVideoAudioToggle = document.getElementById('sandwich-video-audio-toggle');
+const sandwichMenuTrigger = document.getElementById('sandwich-menu-trigger');
+const menuLightbox = document.getElementById('menu-lightbox');
+const menuLightboxClose = document.getElementById('menu-lightbox-close');
 const heroTitle = document.getElementById('hero-title');
 const heroSubtitle = document.getElementById('hero-subtitle');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -201,7 +204,7 @@ function initSectionVideoAudio() {
     const activeVideo = audioUnlocked ? getActiveVideo() : null;
 
     await Promise.all(managedVideos.map(async (item) => {
-      const shouldPlayWithSound = activeVideo === item && manualMuteOverride !== true;
+      const shouldPlayWithSound = manualMuteOverride !== true && document.visibilityState === 'visible';
       item.video.muted = !shouldPlayWithSound;
 
       if (shouldPlayWithSound) {
@@ -578,6 +581,37 @@ function initCateringForm() {
   });
 }
 
+function initMenuLightbox() {
+  if (!sandwichMenuTrigger || !menuLightbox || !menuLightboxClose) return;
+
+  function openLightbox() {
+    menuLightbox.classList.add('is-open');
+    menuLightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    menuLightbox.classList.remove('is-open');
+    menuLightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
+  }
+
+  sandwichMenuTrigger.addEventListener('click', openLightbox);
+  menuLightboxClose.addEventListener('click', closeLightbox);
+
+  menuLightbox.addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-close-menu-lightbox')) {
+      closeLightbox();
+    }
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuLightbox.classList.contains('is-open')) {
+      closeLightbox();
+    }
+  });
+}
+
 // ── INIT ─────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   animateHeroTitle();
@@ -590,6 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBookingForm();
   initCateringDropdown();
   initCateringForm();
+  initMenuLightbox();
   updateActiveNav();
 
   // Make CTAs visible for animations

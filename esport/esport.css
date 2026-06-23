@@ -1,0 +1,716 @@
+/* ═══════════════════════════════════════════════
+   FUTURE ESPORT — Editorial / manifesto sub-site
+   Inherits TOKENS, reset, fonts, nav & footer from ../style.css.
+   This file owns a DISTINCT layout system (not the event-booking template).
+   Brand kept: dark #0A0A0A canvas, red #E31837 accent, Chakra Petch + Space Grotesk.
+   ═══════════════════════════════════════════════ */
+
+/* ── Page base ───────────────────────────────── */
+.esport-page {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(227, 24, 55, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(26, 58, 92, 0.18), transparent 55%),
+    var(--bg);
+}
+
+.es-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Shared editorial section heading (LEFT-aligned, large — deliberately
+   different from the main site's centered .section-header) */
+.es-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.es-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red-glow);
+}
+
+.es-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.02;
+  font-size: clamp(2.1rem, 5.2vw, 4rem);
+  margin: 18px 0 0;
+}
+
+.es-title .accent {
+  color: var(--red);
+  text-shadow: 0 0 30px var(--red-glow);
+}
+
+/* ════════════════════════ HERO — Manifesto ════════════════════════ */
+.es-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 140px 0 80px;
+}
+
+.es-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(227, 24, 55, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(227, 24, 55, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at 50% 35%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 35%, black, transparent 75%);
+  animation: gridPulse 5s ease-in-out infinite;
+  z-index: 0;
+}
+
+.es-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+}
+
+.es-hero-kicker {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.es-hero-headline {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  /* sized so the longest line ("VI SÆLGER FÆLLESSKAB") stays on ONE line */
+  font-size: clamp(1.9rem, 6vw, 5.2rem);
+  line-height: 0.96;
+  letter-spacing: -1px;
+  margin: 8px 0 0;
+  display: flex;
+  flex-wrap: nowrap;       /* never wrap to a new line */
+  white-space: nowrap;
+  align-items: baseline;
+  gap: 0 0.28em;
+}
+
+/* Rotating word (Udvikling / Håb / Fællesskab) — sits inline, to the RIGHT
+   of "Vi sælger", on the same line; the line width never re-wraps. */
+.es-rotator {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.es-rotator-word {
+  display: inline-block;
+  color: var(--red);
+  text-shadow: 0 0 40px var(--red-glow-strong);
+  opacity: 0;
+  transform: translateY(0.35em) rotateX(-40deg);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+  white-space: nowrap;
+}
+
+.es-rotator-word.is-active {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+.es-rotator-word.is-leaving {
+  opacity: 0;
+  transform: translateY(-0.35em) rotateX(40deg);
+}
+
+.es-rotator-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.9em;
+  background: var(--red);
+  margin-left: 0.12em;
+  vertical-align: baseline;
+  box-shadow: 0 0 12px var(--red-glow);
+  animation: cursorBlink 0.9s step-end infinite;
+}
+
+.es-hero-sub {
+  margin: 36px 0 0;
+  max-width: 620px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.es-hero-sub strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.es-hero-actions {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ════════════════════════ MARQUEE ════════════════════════ */
+.es-marquee {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  padding: 22px 0;
+}
+
+.es-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: esMarquee 28s linear infinite;
+}
+
+.es-marquee-item {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--text);
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.es-marquee-item.dim {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
+}
+
+.es-marquee-star {
+  color: var(--red);
+  font-size: 0.7em;
+}
+
+@keyframes esMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ════════════════════════ MANIFESTO statement ════════════════════════ */
+.es-manifesto {
+  padding: 120px 0;
+}
+
+.es-manifesto-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  max-width: 1000px;
+}
+
+.es-manifesto-text .muted {
+  color: var(--text-muted);
+}
+
+.es-manifesto-text .accent {
+  color: var(--red);
+  text-shadow: 0 0 28px var(--red-glow);
+}
+
+/* ════════════════════════ PILLARS — big-number rows ════════════════════════ */
+.es-pillars {
+  padding: 40px 0 120px;
+}
+
+.es-pillars-head {
+  margin-bottom: 60px;
+}
+
+.es-pillar {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 40px;
+  padding: 56px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  align-items: start;
+}
+
+.es-pillar:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.es-pillar-index {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.es-pillar-num {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(227, 24, 55, 0.55);
+  transition: -webkit-text-stroke 0.4s ease, color 0.4s ease;
+}
+
+.es-pillar:hover .es-pillar-num {
+  color: var(--red);
+  -webkit-text-stroke: 1.5px var(--red);
+  text-shadow: 0 0 40px var(--red-glow);
+}
+
+.es-pillar-for {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  align-self: center;
+}
+
+.es-pillar-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.es-pillar-lead {
+  margin-top: 14px;
+  font-size: 1.2rem;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.es-pillar-body {
+  margin-top: 18px;
+  max-width: 640px;
+  color: var(--text-dim);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.es-pillar-tags {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.es-pillar-tag {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+/* ════════════════════════ INCLUSION — Esport for alle ════════════════════════ */
+.es-inclusion {
+  position: relative;
+  padding: 110px 0;
+  background:
+    linear-gradient(180deg, transparent, rgba(227, 24, 55, 0.06) 50%, transparent),
+    var(--bg-alt);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.es-inclusion-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.es-inclusion-quote {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+  line-height: 1.12;
+}
+
+.es-inclusion-quote .accent {
+  color: var(--red);
+  text-shadow: 0 0 28px var(--red-glow);
+}
+
+.es-inclusion-copy {
+  margin-top: 26px;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 560px;
+}
+
+.es-inclusion-points {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.es-inc-point {
+  display: flex;
+  gap: 16px;
+  padding: 22px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.4s;
+}
+
+.es-inc-point:hover {
+  transform: translateX(6px);
+  border-color: rgba(227, 24, 55, 0.4);
+}
+
+.es-inc-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--red);
+}
+
+.es-inc-point h4 {
+  font-family: 'Chakra Petch', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.es-inc-point p {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ════════════════════════ ROSTER — Menneskene bag ════════════════════════ */
+.es-roster {
+  padding: 120px 0;
+}
+
+.es-roster-head {
+  margin-bottom: 56px;
+}
+
+.es-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.es-person {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.4s;
+}
+
+.es-person:hover {
+  transform: translateY(-6px);
+  border-color: rgba(227, 24, 55, 0.45);
+}
+
+.es-person-photo {
+  aspect-ratio: 3 / 4;
+  background:
+    linear-gradient(180deg, rgba(227, 24, 55, 0.12), rgba(10, 10, 10, 0.9)),
+    var(--surface-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.14);
+  position: relative;
+}
+
+.es-person-photo::after {
+  content: 'FOTO';
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+.es-person-body {
+  padding: 18px;
+}
+
+.es-person-name {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+}
+
+.es-person-role {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--red);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.es-person-note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ════════════════════════ NEWS feed ════════════════════════ */
+.es-news {
+  padding: 0 0 120px;
+}
+
+.es-news-head {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.es-news-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.es-news-card {
+  display: grid;
+  grid-template-columns: 130px 1fr auto;
+  gap: 28px;
+  align-items: center;
+  padding: 28px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  transition: background 0.3s, padding-left 0.3s var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.es-news-card:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.es-news-card:hover {
+  background: rgba(227, 24, 55, 0.04);
+  padding-left: 20px;
+}
+
+.es-news-date {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.es-news-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  line-height: 1.2;
+}
+
+.es-news-excerpt {
+  margin-top: 6px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: 640px;
+}
+
+.es-news-arrow {
+  font-size: 1.4rem;
+  color: var(--red);
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.es-news-card:hover .es-news-arrow {
+  transform: translateX(6px);
+}
+
+.es-news-tag {
+  display: inline-block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 1px solid rgba(227, 24, 55, 0.4);
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+/* ════════════════════════ CTA banner ════════════════════════ */
+.es-cta {
+  padding: 100px 0 130px;
+}
+
+.es-cta-card {
+  position: relative;
+  border-radius: 28px;
+  padding: 80px 48px;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(600px 300px at 50% -20%, rgba(227, 24, 55, 0.35), transparent 70%),
+    linear-gradient(160deg, var(--surface-light), var(--surface));
+  border: 1px solid rgba(227, 24, 55, 0.3);
+  box-shadow: 0 0 80px rgba(227, 24, 55, 0.1);
+}
+
+.es-cta-card h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.es-cta-card p {
+  margin: 20px auto 36px;
+  max-width: 560px;
+  color: var(--text-dim);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.es-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.es-contact-line {
+  margin-top: 28px;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+.es-contact-line a {
+  color: var(--text);
+  border-bottom: 1px solid rgba(227, 24, 55, 0.5);
+}
+
+/* ════════════════════════ Reveal helper ════════════════════════ */
+.es-reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+.es-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════════════ Nav: back-to-main button ════════════════════════ */
+.nav-back-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-dim);
+  white-space: nowrap;
+  font-family: 'Chakra Petch', sans-serif;
+  transition: transform 0.3s var(--ease-out-expo), background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.nav-back-cta:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text);
+}
+
+.nav-back-arrow { font-size: 1rem; line-height: 1; }
+
+.nav-back-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1080px) {
+  .nav-back-cta { display: none; }
+}
+
+/* ════════════════════════ Responsive ════════════════════════ */
+@media (max-width: 900px) {
+  .es-pillar {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 44px 0;
+  }
+  .es-pillar-index { gap: 14px; }
+  .es-inclusion-grid { grid-template-columns: 1fr; gap: 40px; }
+  .es-roster-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .es-hero { padding: 120px 0 60px; min-height: auto; }
+  .es-manifesto, .es-roster { padding: 80px 0; }
+  .es-pillars { padding: 30px 0 80px; }
+  .es-news-card {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .es-news-arrow { display: none; }
+  .es-cta-card { padding: 56px 24px; }
+}
+
+@media (max-width: 520px) {
+  .es-wrap { padding: 0 20px; }
+  .es-roster-grid { grid-template-columns: 1fr; }
+  .es-hero-actions .hero-cta,
+  .es-cta-actions .hero-cta { width: 100%; }
+}

@@ -634,7 +634,7 @@ img {
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 40px);
-  max-width: 1420px;
+  max-width: 1560px;
   height: var(--nav-h);
   z-index: 1000;
   border-radius: 16px;
@@ -658,10 +658,10 @@ img {
 .nav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
-  padding: 0 30px;
-  max-width: 1420px;
+  padding: 0 26px;
+  max-width: 1560px;
   margin: 0 auto;
 }
 
@@ -677,9 +677,10 @@ img {
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: 22px;
   align-items: center;
-  margin-left: auto;
+  /* hug the logo with the SAME gap that sits between the two right-side buttons */
+  margin-left: 18px;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
@@ -687,8 +688,9 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-left: 20px;
+  gap: 16px;
+  /* push the action buttons to the right edge; slack lands in the middle */
+  margin-left: auto;
 }
 
 .nav-call-cta {
@@ -729,6 +731,42 @@ img {
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 1.8px;
+}
+
+/* eSport sub-site entry button */
+.nav-esport-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  border: 1px solid rgba(227, 24, 55, 0.6);
+  color: var(--text);
+  white-space: nowrap;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  box-shadow: 0 0 24px var(--red-glow);
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
+}
+
+.nav-esport-cta:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 0 34px var(--red-glow-strong);
+}
+
+.nav-esport-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px var(--red-glow));
+}
+
+.mobile-link-esport {
+  color: var(--red);
+  font-weight: 700;
 }
 
 .nav-link {
@@ -885,6 +923,11 @@ img {
 
 @media (max-width: 768px) {
   .nav-links {
+    display: none;
+  }
+
+  /* eSport pill is available in the mobile menu — hide the nav pill to keep things tidy */
+  .nav-esport-cta {
     display: none;
   }
 
@@ -1947,6 +1990,41 @@ img {
 @keyframes instructorCoreGlow {
   0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
   100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+/* -- Instructor PHOTO variant (main page) — full photo with translucent red edges -- */
+.instructor-img-wrapper--photo {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(227, 24, 55, 0.28);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 60px rgba(227, 24, 55, 0.12);
+}
+
+.instructor-img--photo {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  filter: none;
+  z-index: 1;
+}
+
+/* translucent red fade on the edges — the COLOR is transparent, the photo stays visible */
+.instructor-photo-edge {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(to right, rgba(227, 24, 55, 0.22), transparent 11%, transparent 89%, rgba(227, 24, 55, 0.22)),
+    linear-gradient(to bottom, rgba(227, 24, 55, 0.22), transparent 11%, transparent 89%, rgba(227, 24, 55, 0.22));
 }
 
 

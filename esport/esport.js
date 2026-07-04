@@ -13,7 +13,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
 // ── 1. HEADER — Scroll Detection + Active Nav ─
-const sectionIds = ['mission', 'soejler', 'for-alle', 'mennesker', 'nyheder', 'kontakt'];
+const sectionIds = ['mission', 'soejler', 'for-alle', 'impact', 'mennesker', 'nyheder', 'kontakt'];
 const sectionEls = sectionIds.map(id => document.getElementById(id));
 
 function updateActiveNav() {
@@ -61,14 +61,14 @@ mobileLinks.forEach(link => {
   });
 });
 
-// ── 3. HERO — Rotating word (Udvikling / Håb / Fællesskab) ─
+// ── 3. HERO — Rotating word (Udvikling / Håb / Fællesskab / Glæde) ─
 function initRotator() {
   const rotator = document.getElementById('es-rotator');
   if (!rotator) return;
   const wordEl = rotator.querySelector('.es-rotator-word');
   if (!wordEl) return;
 
-  const words = ['Udvikling', 'Håb', 'Fællesskab'];
+  const words = ['Udvikling', 'Håb', 'Fællesskab', 'Glæde'];
   let idx = 0;
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

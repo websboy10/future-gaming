@@ -637,6 +637,289 @@
   border-bottom: 1px solid rgba(227, 24, 55, 0.5);
 }
 
+/* ════════════════════════ HERO — positioning line ════════════════════════ */
+.es-hero-positioning {
+  margin: 22px 0 0;
+  max-width: 620px;
+  padding-left: 16px;
+  border-left: 2px solid var(--red);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.es-hero-positioning .accent {
+  color: var(--red);
+  text-shadow: 0 0 20px var(--red-glow);
+}
+
+/* ════════════════════════ PILLARS — per-category CTA ════════════════════════ */
+.es-pillar-cta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  transition: color 0.3s;
+}
+
+.es-pillar-cta span {
+  color: var(--red);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: text-shadow 0.3s;
+}
+
+.es-pillar-cta:hover { color: var(--text); }
+.es-pillar-cta:hover span { text-shadow: 0 0 20px var(--red-glow); }
+
+/* ════════════════════════ HÅB — statement band ════════════════════════ */
+.es-statement {
+  padding: 92px 0;
+  text-align: center;
+  background: radial-gradient(720px 340px at 50% 50%, rgba(227, 24, 55, 0.12), transparent 70%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.es-statement-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6.5vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.es-statement-accent {
+  color: var(--red);
+  text-shadow: 0 0 55px var(--red-glow-strong);
+}
+
+/* ════════════════════════ GALLERY — blandet kontekst ════════════════════════ */
+.es-gallery {
+  padding: 40px 0 24px;
+}
+
+.es-gallery-head {
+  margin-bottom: 48px;
+  max-width: 780px;
+}
+
+.es-gallery-sub {
+  margin-top: 20px;
+  max-width: 620px;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.es-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 190px;
+  gap: 16px;
+}
+
+.es-gallery-item {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.4s;
+}
+
+.es-gallery-item.feature {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.es-gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(227, 24, 55, 0.45);
+}
+
+/* Placeholder look — udskift baggrund med et rigtigt foto og fjern .is-placeholder */
+.es-gallery-item.is-placeholder {
+  background:
+    linear-gradient(180deg, rgba(227, 24, 55, 0.10), rgba(10, 10, 10, 0.88)),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0 12px, transparent 12px 24px),
+    var(--surface-light);
+}
+
+.es-gallery-item.is-placeholder::after {
+  content: 'FOTO';
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+.es-gallery-cap {
+  position: relative;
+  z-index: 2;
+  padding: 16px 18px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* ════════════════════════ IMPACT — Future eSport Impact ════════════════════════ */
+.es-impact {
+  padding: 60px 0 120px;
+}
+
+.es-impact-head {
+  margin-bottom: 52px;
+  max-width: 780px;
+}
+
+.es-impact-sub {
+  margin-top: 20px;
+  max-width: 640px;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.es-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.es-impact-card {
+  position: relative;
+  padding: 32px 24px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(227, 24, 55, 0.06), transparent 60%),
+    var(--surface);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.4s;
+}
+
+.es-impact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), transparent);
+}
+
+.es-impact-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(227, 24, 55, 0.45);
+}
+
+.es-impact-cat {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.es-impact-value {
+  display: block;
+  margin-top: 14px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 4.4rem);
+  line-height: 1;
+  color: var(--red);
+  text-shadow: 0 0 40px var(--red-glow);
+}
+
+.es-impact-value small {
+  font-size: 0.4em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.es-impact-desc {
+  margin-top: 14px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.es-impact-note {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.es-impact-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red-glow);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ════════════════════════ ROSTER — personal "why" line ════════════════════════ */
+.es-person-why {
+  display: block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 7px;
+}
+
+/* ════════════════════════ CTA — anchor tagline ════════════════════════ */
+.es-cta-card .es-cta-tagline {
+  margin: 4px auto 34px;
+  max-width: 660px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1rem, 2.4vw, 1.45rem);
+  line-height: 1.35;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.es-cta-card .es-cta-tagline .accent {
+  color: var(--red);
+  text-shadow: 0 0 24px var(--red-glow);
+}
+
 /* ════════════════════════ Reveal helper ════════════════════════ */
 .es-reveal {
   opacity: 0;
@@ -694,6 +977,9 @@
   .es-pillar-index { gap: 14px; }
   .es-inclusion-grid { grid-template-columns: 1fr; gap: 40px; }
   .es-roster-grid { grid-template-columns: repeat(2, 1fr); }
+  .es-gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 168px; }
+  .es-gallery-item.feature { grid-column: span 2; grid-row: span 1; }
+  .es-impact-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -713,4 +999,8 @@
   .es-roster-grid { grid-template-columns: 1fr; }
   .es-hero-actions .hero-cta,
   .es-cta-actions .hero-cta { width: 100%; }
+  .es-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .es-gallery-item.feature { grid-column: span 1; grid-row: span 1; }
+  .es-impact-grid { grid-template-columns: 1fr; }
+  .es-statement { padding: 64px 0; }
 }

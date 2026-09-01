@@ -2,3 +2,7 @@ node_modules/
 dist/
 .env
 .DS_Store
+
+# Downloaded app, not project source
+FileZilla.app/
+FileZilla_*.tar.bz2

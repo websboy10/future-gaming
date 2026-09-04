@@ -3974,3 +3974,105 @@ input[type="date"] {
     height: 48px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FIRMABESTILLING — external ordering CTAs (tribehappiness)
+   ═══════════════════════════════════════════════════════════ */
+
+.nav-link-firma {
+  color: var(--red);
+}
+
+.nav-link-firma .nav-dot {
+  background: var(--red);
+  opacity: 1;
+}
+
+.mobile-link-firma {
+  color: var(--red);
+}
+
+/* Hero — sits on its own row under the primary/secondary pair */
+.hero-cta-row {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-cta-firma {
+  padding: 16px 40px;
+  background: rgba(227, 24, 55, 0.14);
+  border: 1px solid rgba(227, 24, 55, 0.55);
+  box-shadow: 0 0 24px rgba(227, 24, 55, 0.18);
+}
+
+.hero-cta-firma:hover {
+  background: var(--red);
+  box-shadow: 0 0 34px var(--red-glow);
+}
+
+/* Events — centred below the three event cards */
+.events-firma {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.events-firma-cta {
+  margin-top: 0;
+  min-width: min(100%, 320px);
+  padding: 14px 28px;
+}
+
+/* Sandwich bar — mirrors the "Bestil catering" launcher */
+.firma-launch {
+  margin-top: 18px;
+}
+
+.firma-toggle {
+  justify-content: flex-start;
+}
+
+/* Contact details — booking sidebar */
+.sidebar-firma a {
+  display: block;
+}
+
+/* Contact details — HQ section */
+.contact-item-firma a {
+  display: block;
+}
+
+/* The desktop nav gained a link — tighten it before it runs out of room. */
+@media (max-width: 1400px) {
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-link {
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+  }
+
+  .nav-esport-cta,
+  .nav-call-cta {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* Below this the horizontal nav no longer fits — hand over to the hamburger,
+   which carries the same links (Firmabestilling and eSport included). */
+@media (max-width: 1240px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-esport-cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

@@ -634,7 +634,7 @@ img {
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 40px);
-  max-width: 1420px;
+  max-width: 1560px;
   height: var(--nav-h);
   z-index: 1000;
   border-radius: 16px;
@@ -659,14 +659,21 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 28px;
   height: 100%;
   padding: 0 30px;
-  max-width: 1420px;
+  max-width: 1560px;
   margin: 0 auto;
 }
 
+.nav-logo,
+.nav-actions {
+  flex-shrink: 0;
+}
+
 .nav-logo img {
-  height: 52px;
+  height: 44px;
+  max-width: none;
   animation: glowPulse 3s ease-in-out infinite;
   transition: transform 0.3s var(--ease-spring);
 }
@@ -688,7 +695,6 @@ img {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-left: 20px;
 }
 
 .nav-call-cta {
@@ -3909,5 +3915,113 @@ input[type="date"] {
   .social-hex {
     width: 48px;
     height: 48px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FIRMABESTILLING — external ordering CTAs (tribehappiness)
+   ═══════════════════════════════════════════════════════════ */
+
+.nav-link-firma {
+  color: var(--red);
+}
+
+.nav-link-firma .nav-dot {
+  background: var(--red);
+  opacity: 1;
+}
+
+.mobile-link-firma {
+  color: var(--red);
+}
+
+/* Hero — sits on its own row under the primary/secondary pair */
+.hero-cta-row {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-cta-firma {
+  padding: 16px 40px;
+  background: rgba(227, 24, 55, 0.14);
+  border: 1px solid rgba(227, 24, 55, 0.55);
+  box-shadow: 0 0 24px rgba(227, 24, 55, 0.18);
+}
+
+.hero-cta-firma:hover {
+  background: var(--red);
+  box-shadow: 0 0 34px var(--red-glow);
+}
+
+/* Events — centred below the three event cards */
+.events-firma {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.events-firma-cta {
+  margin-top: 0;
+  min-width: min(100%, 320px);
+  padding: 14px 28px;
+}
+
+/* Sandwich bar — mirrors the "Bestil catering" launcher */
+.firma-launch {
+  margin-top: 18px;
+}
+
+.firma-toggle {
+  justify-content: flex-start;
+}
+
+/* Contact details — booking sidebar */
+.sidebar-firma a {
+  display: block;
+}
+
+/* Contact details — HQ section */
+.contact-item-firma a {
+  display: block;
+}
+
+/* The desktop nav gained a link — tighten it before it runs out of room. */
+@media (max-width: 1600px) {
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-link {
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+  }
+
+  .nav-call-cta {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 1380px) {
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 0.62rem;
+    letter-spacing: 0.8px;
+  }
+}
+
+/* Below this the horizontal nav no longer fits — hand over to the hamburger,
+   which carries the same links (Firmabestilling included). */
+@media (max-width: 1279px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
   }
 }
